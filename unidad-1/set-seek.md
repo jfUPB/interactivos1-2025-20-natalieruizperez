@@ -17,10 +17,29 @@
 #### ¿Cómo podrías aplicar lo que has visto en tu perfil profesional?
    En mi perfil profesional, podría aplicar el arte generativo y combinarlo con sistemas físicos interactivos para crear visuales en tiempo real que respondan a estímulos como el sonido o el movimiento. Por ejemplo, podría desarrollaría visuales generativos en Blender que reaccionen dinámicamente durante conciertos o presentaciones, y crearía presets específicos para controlar momentos clave, con el propósito de automatizar y hacer más simple el traenriqueciendo así la experiencia visual y sonora de los eventos. También considero interesante crear ambientes con objetos 3D donde el fondo pueda cambiar dinámicamente mediante un algoritmo para crear estilos específicos dentro de la creación automática, permitiendo variaciones y control sobre los resultados generados por el sistema.
 
-   microbit input send love output corazon y carita
+  
+   *** 
 ### Actvidad 03
+##### Notas
+Resumen de cómo conectar el micro-bit:
+1. Se abre micro:bit para copiar el código.
+2. Se conecta y se le da click a los tres puntos al lado de "send to micro-bit" para conectarlo
+3. Una vez conectado puedo darle click a "send to micro-bit"
+4. Ahora es necesario ir al editor p5js y poner el otro código.
+5. Después en el index debajo de "link" se copia el código para acceder una biblioteca.
+6. Luego le doy a "connect to micro:bit" y escojo el dispositivo.
+***
+   
 #### En este sistemas físico interactivo identifica los inputs, outputs y el proceso.
+#### Inputs
+En este sistema físico interactivo los inputs serían los botones y sacudirlo. 
 
-El proceso 
+#### Outputs 
+los outputs serían lo que se ve en la patalla como el circulo rojo con la letra A, el circulo B amarillo, el circulo C verde.
+
+#### Proceso
+El proceso es el siguiente. El proceso que ocurre es que al presionar el input que es botón izquierdo del lado A, en la pantalla del computador se ve en el programa el cículo A de color rojo, el cual sería el output. En el caso de presionar el botón derecho B que es el input aparecerá en la pantalla un círculo amarillo con la letra B, el cual sería el output. También si lo agito, lo cual es el input, puedo ver en la pantalla un círculo verdce con la letra C. Finalmente si le doy click en la pantalla del computador en donde dice "send love", lo que sería el input, obtendría como resultado un corazón. También al conectar el micro-bit el input sería la conexión y el output la carita feliz. En conclusión, los inputs se transforman en los outputs, es posible observar que cuando el programa recibe algo, este hace una operaciónpara que cambie algo, las cuales serían las reglas del sistema generativo.
+
+ 
 
 
