@@ -42,6 +42,32 @@ El proceso es el siguiente: Al presionar el input que es botón izquierdo del la
 
 ### Actividad 4
 
+https://editor.p5js.org/natalieruizperez/full/A2ASIaCXc
+
+~~~
+function setup() {
+  createCanvas(400, 400);
+  noStroke();
+}
+
+function draw() {
+  background(0,10);
+  fill(random(255), random(255), random(255));
+  
+  t = frameCount;
+
+  x = mouseX + cos(t) * 50;
+  y = mouseY + sin(t) * 50;
+
+  circle(x, y, 100);
+}
+~~~
+
+<img width="396" height="381" alt="image" src="https://github.com/user-attachments/assets/0e84163c-dd63-40d0-86bd-3dafcccc33e4" />
+<img width="386" height="384" alt="image" src="https://github.com/user-attachments/assets/af1c4022-9d19-4333-99c7-6372168ef1e8" />
+
+
+
 
 
 
