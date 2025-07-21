@@ -8,14 +8,14 @@
   Un sistema físico interactivo es un sistema mediante el cual una o más personas pueden interactuar. Estos sistemas utilizan tecnologías, como pantallas, sensores, etc, para generar estímulos que pueden ser visuales, auditivos, u otros. La interacción ocurre cuando el sistema recibe información del entorno o del usuario que se conoce como inputs. Según la información que reciba este ejecuta una acción conocida como output para crear una experiencia.
 
 #### ¿Cómo podrías aplicar lo que has visto en tu perfil profesional?
-   Después de analizar el funcionamiento de los sistemas físicos interactivos, creo que se podrían crear experiencias visuales en tiempo real aplicadas al modelado y animación en Blender. Por ejemplo, se podrían desarrollar animaciones 3D que respondan a estímulos sonoros o externos. Además, pienso que al usar simulaciones como de ropa o cabello, permitiría aumentar el realismo.
+   Creo que se podrían crear experiencias visuales en tiempo real aplicadas al modelado y animación en Blender. Por ejemplo, se podrían hacer animaciones 3D que respondan al sonido o movimiento. Además, pienso que se podrían usar simulaciones de ropa o cabello para que se vea más realistas.
 
 ### Actividad 02
 #### ¿Qué es el diseño/arte generativo?
  El diseño o arte generativo consiste en crear imágenes, sonidos o productos interactivos mediante sistemas que se basan en algoritmos y reglas. En lugar de hacerlo todo manualmente, es posible crear condiciones que permiten a la máquina generar los resultados de manera autónoma o casi autónoma. Estas reglas pueden cambiarse para controlar qué tan aleatorio es para que tenga un toque más humano.
   
 #### ¿Cómo podrías aplicar lo que has visto en tu perfil profesional?
-   En mi perfil profesional, podría aplicar el arte generativo y combinarlo con sistemas físicos interactivos para crear visuales en tiempo real que respondan a estímulos como el sonido o el movimiento. Por ejemplo, podría desarrollar visuales generativos en Blender que reaccionen dinámicamente durante conciertos o presentaciones, y crearía presets para controlar ciertos momentos muy específicos, con el propósito de automatizar y hacer más simple. También considero interesante crear ambientes con objetos 3D donde el fondo pueda cambiar mediante un algoritmo para crear estilos específicos y así tener también variaciones y control sobre los resultados generados por el sistema.
+   Podría aplicar el arte generativo y combinarlo con sistemas físicos interactivos para crear visuales en tiempo real que respondan a estímulos. Por ejemplo, podría crear visuales generativos en Blender que reaccionen en conciertos o presentaciones, y también me gustaría hacer presets para controlar ciertos momentos específicos, con el propósito de automatizar y hacerlo más simple. También considero que sería interesante crear ambientes con objetos 3D donde el fondo pueda cambiar mediante un algoritmo para crear diferentes estilos y así tener también variaciones y control sobre los resultados generados por el sistema.
 
   
    *** 
