@@ -3,8 +3,7 @@
 ## 🛠 Fase: Apply
 
 ### Actividad 05
-
-Vamos a crear un programa en el micro:bit que tenga un input (un botón) y un output (enviar un mensaje por serial) que indique que se ha presionado el botón. Estás son las notas que tomé a medida que explorabamos el código, éste no está completo ya que sucede si el botón fue presionado.
+En clase seguimos las instrucciones para crear un programa en el micro:bit que tenga un input (un botón) y un output (enviar un mensaje por serial) que indique que se ha presionado el botón. Estás son las notas que tomé a medida que explorabamos el código, este no está completo ya que sucede si el botón fue presionado.
 
 ##### En el microbit:
 ~~~
@@ -68,7 +67,7 @@ function connectBtnClick() {
 
 A la hora de analizar este código en clase nos dimos cuenta que cambiaba a una gran velocidad entre colores y se podía observar por una milésima de segundo el color rojo. Esto sucedía porque la instrucción en el microbit era si el botón fue presionado lo que causaba que no se pudiese notar bien la diferencia al presionar o no presionar el botón.  
 
-Ahora voy a analizar el código completo y funcional que sí permite ver la diferencia cuando el botón está siendo presionado y cuando no.
+  Ahora voy a analizar el código completo y funcional que sí permite ver la diferencia cuando el botón está siendo presionado y cuando no.
 
 ##### microbit
 ~~~
@@ -145,28 +144,35 @@ while True:
 ##### Explica cómo funciona el sistema físico interactivo que acabamos de crear.
 El programa permite crear una conexión entre el microbit y el pc de forma tal que al presionar un botón en el microbit el cuadrado verde que aparece en la pantalla cambia a rojo, siempre y cuando el botón A esté siendo presionado. En este sistema los inputs serían los botones y el cable que permite conectar el microbit al pc (serial). Los outputs serían lo que se ve en la patalla del computador como el cuadrado rojo y verde, también el botón que aparece en la pantalla para conectar o desconectar el microbit.
 
+---
 ### Actividad 06
+##### Crea un programa en p5.js que muestre un círculo en la pantalla. Utiliza los botones A y B del micro:bit para controlar la posición en x del círculo en el canvas de p5.js.
+Para crear este código tuve en cuenta el código que analicé en la actividad pasada solo que está vez en lugar de ser un cuadrado cree un círculo como indicaba la actividad. También añadí en la parte del microbit lo que pasaría si se presiona el botón B. Para el código e p5.js cree una variable que fuese la posición del círculo y la modifiqué cuando fuesen presionados los botones, haciendo que se restaran o sumaran valores según el caso.
 
-Crea un programa en p5.js que muestre un círculo en la pantalla. Utiliza los botones A y B del micro:bit para controlar la posición en x del círculo en el canvas de p5.js.
+##### Escribe el enlace a tu programa en el editor de p5.js.
+https://editor.p5js.org/natalieruizperez/sketches/irnOR3IhA
 
-##### microbit
+##### Copia el código del micro:bit en la bitácora (recuerda insertarlo usando markdown y el lenguaje python).
+microbit
 ~~~
-from microbit import *
+from microbit import *             // Importar bibliotecas
 
-uart.init(baudrate=115200)
+uart.init(baudrate=115200)         // Nombre del objeto que representa las comunicaciones seriales, permite enviar datos al dispositivo
+
 
 while True:
 
-    if button_a.was_pressed():
+    if button_a.was_pressed():     // Si el botón A fue presionado escribe A
         uart.write('A')
-    if button_b.was_pressed():
+    if button_b.was_pressed():     // Si el botón B fue presionado escribe B
         uart.write('B')
 
-    sleep(100)
+    sleep(100)                     // Ya no funciona a 60 fps si no a 10 fps
 ~~~
 
-#psj5
-~~~~
+##### Copia el código de tu programa en la bitácora (recuerda insertarlo usando markdown y el lenguaje javascript).
+psj5
+~~~
 
 //Variables globales
 let port;
@@ -202,14 +208,13 @@ function draw() {
   }
 
   // Para crear el círculo
-  circle(CENTER);
-  fill("pink"); 
-  circle(x, 200, 100);
+  fill("pink");             // Para rellenar el círculo
+  circle(x, 200, 100);      // La posición en la que se crea el círculo
 
-  if (!port.opened()) {
-    connectBtn.html("Connect to micro:bit");
+  if (!port.opened()) {                      
+    connectBtn.html("Connect to micro:bit");   // Si no está abierto el puerto muestra el texto para conectarlo
   } else {
-    connectBtn.html("Disconnect");
+    connectBtn.html("Disconnect");              // Si  está abierto el puerto muestra el texto para desconectarlo
   }
 }
 
@@ -223,7 +228,6 @@ function connectBtnClick() {
   }
 }
 ~~~
+El programa permite crear una conexión entre el microbit y el pc de forma tal que después de presionar el botón A en el microbit el círculo rosado que aparece en la pantalla se le modifique la posición actual, haciendo que vaya hacia la izquierda de la pantalla. En el caso de presionar el botón B en el microbit el círculo rosado irá hacia el lado derecha de la pantalla. En este sistema los inputs serían los botones y el cable que permite conectar el microbit al pc (serial). Los outputs serían lo que se ve en la patalla del computador como el círculo rosado, cuando se actualiza la posición de este mismo y también el botón que aparece en la pantalla para conectar o desconectar el microbit.
 
-Cuales son los inputs de cada computador, cuales son los outputs y que procesa
-El programa permite crear una conexión entre el microbit y el pc de forma tal que al presionar el botón A en el microbit el círculo rosado que aparece en la pantalla se le modifique la posición actual, haciendo que vaya hacia la izquierda de la pantalla después de que se presione el botón...., siempre y cuando el botón A esté siendo presionado. En este sistema los inputs serían los botones y el cable que permite conectar el microbit al pc (serial). Los outputs serían lo que se ve en la patalla del computador como el cuadrado rojo y verde, también el botón que aparece en la pantalla para conectar o desconectar el microbit.
 
