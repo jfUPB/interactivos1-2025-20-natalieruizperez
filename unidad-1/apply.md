@@ -22,10 +22,10 @@ Vamos a crear un programa en el micro:bit que tenga un input (un botón) y un ou
 let port;                //Variables globales para que se puedan acceder desde cualquier parte
 let connectBtn;
 
-function setup() {                                       //Funcion qu ese ejecuta una sola vez
-    createCanvas(400, 400);                              //Crea el canvas
-    background(220);                                     //Define el color del fondo
-    port = createSerial();                               //Objeto que permite hacer comunicaciones seriales
+function setup() {                                       // Función que se ejecuta una sola vez
+    createCanvas(400, 400);                              // Crea el canvas
+    background(220);                                     // Define el color del fondo
+    port = createSerial();                               // Objeto que permite hacer comunicaciones seriales
     connectBtn = createButton('Connect to micro:bit');   // Crea un boton para comunicarme con el ui
     connectBtn.position(80, 300);                        // Pone el boton en la posición
     connectBtn.mousePressed(connectBtnClick);            // Cuando se presione con el mouse llama esa funcion
@@ -44,7 +44,7 @@ function draw() {
 
 }
 
- //Pintar rectángulos
+  //Pintar rectángulos
   rectMode(CENTER);
     rect(width / 2, height / 2, 50, 50);
 
@@ -104,8 +104,8 @@ while True:
     background(220);        // Para que se actualice el fondo 
 
     if (port.opened() && !connectionInitialized) {  // Para ver si el puerto está abierto y conectado
-      port.clear();                         // Limpia el puerto serie
-      connectionInitialized = true;         // Si no está conectado que se conecte
+      port.clear();                         // Limpia el puerto 
+      connectionInitialized = true;         // Si no está conectado, se conecta
     }
 
     if (port.availableBytes() > 0) {   //Llegaron datos? Si es una A pone un rojo, si es una N pone un rojo
@@ -167,37 +167,41 @@ while True:
 
 #psj5
 ~~~~
+
+//Variables globales
 let port;
 let connectBtn;
 let connectionInitialized = false;
 let x;  
 
 function setup() {
-  createCanvas(400, 400);
-  x = 200
-  port = createSerial();
-  connectBtn = createButton("Connect to micro:bit");
-  connectBtn.position(80, 300);
-  connectBtn.mousePressed(connectBtnClick);
+  createCanvas(400, 400);     // Crea el canva 
+  x = 200                     // Posición del círculo
+  port = createSerial();      //Objeto que permite hacer comunicaciones seriales
+  connectBtn = createButton("Connect to micro:bit");     // Crea un boton para comunicarme con el ui
+  connectBtn.position(80, 300);                          // Pone un botón en esa posición
+  connectBtn.mousePressed(connectBtnClick);              // Cuando se presione con el mouse llama esa funcion
 }
 
 function draw() {
-  background(220);
+  background(220);             //Actualiza el fondo cada frame
 
+ // Para ver si el puerto está abierto y conectado
   if (port.opened() && !connectionInitialized) {
-    port.clear();
-    connectionInitialized = true;
+    port.clear();                                // Limpia el puerto             
+    connectionInitialized = true;                // Si no está conectado, se conecta
   }
 
-  if (port.availableBytes() > 0) {
+  if (port.availableBytes() > 0) {              //Llegaron datos? 
     let dataRx = port.read(1);
-    if (dataRx == "A") {
+    if (dataRx == "A") {                        // Si es una A modifica la posión actual del círculo y le resta 5
       x -= 5;  
-    } else if (dataRx == "B") {
+    } else if (dataRx == "B") {                 // Si es una B modifica la posión actual del círculo y le suma 5
       x += 5;  
     }
   }
 
+  // Para crear el círculo
   circle(CENTER);
   fill("pink"); 
   circle(x, 200, 100);
@@ -209,15 +213,17 @@ function draw() {
   }
 }
 
+// Pasa cuando se presiona el botón
 function connectBtnClick() {
-  if (!port.opened()) {
+  if (!port.opened()) {                  // Si no está abierto se abre una conexión con el puerto
     port.open("MicroPython", 115200);
-    connectionInitialized = false;
+    connectionInitialized = false;       // Reinicia conexión
   } else {
-    port.close();
+    port.close();                        // Si el puerto está abierto lo cierra
   }
 }
 ~~~
 
 Cuales son los inputs de cada computador, cuales son los outputs y que procesa
+El programa permite crear una conexión entre el microbit y el pc de forma tal que al presionar el botón A en el microbit el círculo rosado que aparece en la pantalla se le modifique la posición actual, haciendo que vaya hacia la izquierda de la pantalla después de que se presione el botón...., siempre y cuando el botón A esté siendo presionado. En este sistema los inputs serían los botones y el cable que permite conectar el microbit al pc (serial). Los outputs serían lo que se ve en la patalla del computador como el cuadrado rojo y verde, también el botón que aparece en la pantalla para conectar o desconectar el microbit.
 
