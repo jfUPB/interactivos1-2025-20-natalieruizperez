@@ -143,10 +143,7 @@ while True:
 
 ~~~
 ##### Explica cómo funciona el sistema físico interactivo que acabamos de crear.
-El programa permite crear una conexión entre el microbit y el pc de forma tal que al presionar un botón en el microbit el cuadrado verde que aparece en la pantalla cambia a rojo, siempre y cuando el botón A esté siendo presionado.
-
-Cuales son los inputs de cada computador, cuales son los outputs y que procesa
-Los inputs de la
+El programa permite crear una conexión entre el microbit y el pc de forma tal que al presionar un botón en el microbit el cuadrado verde que aparece en la pantalla cambia a rojo, siempre y cuando el botón A esté siendo presionado. En este sistema los inputs serían los botones y el cable que permite conectar el microbit al pc (serial). Los outputs serían lo que se ve en la patalla del computador como el cuadrado rojo y verde, también el botón que aparece en la pantalla para conectar o desconectar el microbit.
 
 ### Actividad 06
 
