@@ -146,6 +146,7 @@ while True:
 El programa permite crear una conexión entre el microbit y el pc de forma tal que al presionar un botón en el microbit el cuadrado verde que aparece en la pantalla cambia a rojo, siempre y cuando el botón A esté siendo presionado.
 
 Cuales son los inputs de cada computador, cuales son los outputs y que procesa
+Los inputs de la
 
 ### Actividad 06
 
