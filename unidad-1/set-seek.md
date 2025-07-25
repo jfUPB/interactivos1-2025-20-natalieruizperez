@@ -21,7 +21,7 @@
    *** 
 ### Actvidad 03
 
-#### Notas
+**Notas**
 
 Resumen de cómo conectar el micro-bit:
 1. Se abre micro:bit para copiar el código.
