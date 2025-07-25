@@ -9,12 +9,12 @@ En clase seguimos las instrucciones para crear un programa en el micro:bit que t
 
 ``` py
 
-  from microbit import *          // Importar bibliotecas
+  from microbit import *     # Importar bibliotecas
 
-  uart.init(baudrate=115200)      // Nombre del objeto que representa las comunicaciones seriales, permite enviar datos al dispositivo
+  uart.init(baudrate=115200)    # Nombre del objeto que representa las comunicaciones seriales, permite enviar datos al dispositivo
 
   while True:
-      if button_a.was_pressed():  // Si el boton fue presionado
+      if button_a.was_pressed():  # Si el boton fue presionado
           uart.write('A')  
 ```
 
