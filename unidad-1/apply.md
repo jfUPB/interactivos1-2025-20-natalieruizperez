@@ -6,7 +6,9 @@
 En clase seguimos las instrucciones para crear un programa en el micro:bit que tenga un input (un botón) y un output (enviar un mensaje por serial) que indique que se ha presionado el botón. Estás son las notas que tomé a medida que explorabamos el código, este no está completo ya que sucede si el botón fue presionado.
 
 ##### En el microbit:
-~~~
+
+``` py
+
   from microbit import *          // Importar bibliotecas
 
   uart.init(baudrate=115200)      // Nombre del objeto que representa las comunicaciones seriales, permite enviar datos al dispositivo
@@ -14,10 +16,12 @@ En clase seguimos las instrucciones para crear un programa en el micro:bit que t
   while True:
       if button_a.was_pressed():  // Si el boton fue presionado
           uart.write('A')  
-~~~
+```
 
 ##### En el p5js:
-~~~
+
+``` js
+
 let port;                //Variables globales para que se puedan acceder desde cualquier parte
 let connectBtn;
 
@@ -63,14 +67,15 @@ function connectBtnClick() {
     }
 }
 
-~~~
+```
 
 A la hora de analizar este código en clase nos dimos cuenta que cambiaba a una gran velocidad entre colores y se podía observar por una milésima de segundo el color rojo. Esto sucedía porque la instrucción en el microbit era si el botón fue presionado lo que causaba que no se pudiese notar bien la diferencia al presionar o no presionar el botón.  
 
   Ahora voy a analizar el código completo y funcional que sí permite ver la diferencia cuando el botón está siendo presionado y cuando no.
 
 ##### microbit
-~~~
+
+``` py
 from microbit import *        
 
 uart.init(baudrate=115200)
@@ -83,9 +88,10 @@ while True:
         uart.write('N')
 
     sleep(100)        // Ya no funciona a 60 fps si no a 10 fps
-~~~
+```
 ##### ps5j
-~~~
+
+``` js
   let port;                      // Variables globales para que se puedan acceder desde cualquier parte
   let connectBtn;
   let connectionInitialized = false;
@@ -140,7 +146,8 @@ while True:
     }
   }
 
-~~~
+```
+
 ##### Explica cómo funciona el sistema físico interactivo que acabamos de crear.
 El programa permite crear una conexión entre el microbit y el pc de forma tal que al presionar un botón en el microbit el cuadrado verde que aparece en la pantalla cambia a rojo, siempre y cuando el botón A esté siendo presionado. En este sistema los inputs serían los botones y el cable que permite conectar el microbit al pc (serial). Los outputs serían lo que se ve en la patalla del computador como el cuadrado rojo y verde, también el botón que aparece en la pantalla para conectar o desconectar el microbit.
 
@@ -154,7 +161,8 @@ https://editor.p5js.org/natalieruizperez/sketches/irnOR3IhA
 
 ##### Copia el código del micro:bit en la bitácora (recuerda insertarlo usando markdown y el lenguaje python).
 microbit
-~~~
+
+``` py
 from microbit import *             // Importar bibliotecas
 
 uart.init(baudrate=115200)         // Nombre del objeto que representa las comunicaciones seriales, permite enviar datos al dispositivo
@@ -168,11 +176,12 @@ while True:
         uart.write('B')
 
     sleep(100)                     // Ya no funciona a 60 fps si no a 10 fps
-~~~
+```
 
 ##### Copia el código de tu programa en la bitácora (recuerda insertarlo usando markdown y el lenguaje javascript).
 psj5
-~~~
+
+``` js
 
 //Variables globales
 let port;
@@ -227,7 +236,8 @@ function connectBtnClick() {
     port.close();                        // Si el puerto está abierto lo cierra
   }
 }
-~~~
+```
+
 El programa permite crear una conexión entre el microbit y el pc de forma tal que después de presionar el botón A en el microbit el círculo rosado que aparece en la pantalla se le modifique la posición actual, haciendo que vaya hacia la izquierda de la pantalla. En el caso de presionar el botón B en el microbit el círculo rosado irá hacia el lado derecha de la pantalla. En este sistema los inputs serían los botones y el cable que permite conectar el microbit al pc (serial). Los outputs serían lo que se ve en la patalla del computador como el círculo rosado, cuando se actualiza la posición de este mismo y también el botón que aparece en la pantalla para conectar o desconectar el microbit.
 
 
