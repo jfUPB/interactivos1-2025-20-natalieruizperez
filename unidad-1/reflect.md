@@ -48,7 +48,9 @@ Fabricio Toro
 https://github.com/jfUPB/interactivos1-2025-20-CrockerHacker101/blob/unidad1/apply/unidad-1/apply.md
 
 ##### Concéntrate en la Actividad 06: control de movimiento con micro:bit de tu compañero. Lee su código (Python y JavaScript). Tu compañero resolvió el problema de manera diferente a ti, qué hizo diferente, qué aprendiste de su solución. En tu bitácora documenta lo anterior y escribe, como si le estuvieras explicando, lo que tú hiciste y por qué es diferente a lo que hizo tu compañero.
+
 Al observar la solución de mi compañero me gustó en especial una línea de código que no conocía que permitía suavizar el movimiento del círculo y hacer que se viera más fluido, me hubiese gustado implementar una solución así en mi código ya que mi círculo se movía de forma muy robótica.
+
 ---
 ### Actividad 09
 Feedback
