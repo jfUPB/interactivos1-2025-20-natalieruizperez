@@ -10,25 +10,24 @@ from microbit import *
 import utime
 
 class Pixel:
-    def __init__(self,pixelX,pixelY,initState,interval):
-        self.state = "Init"
-        self.startTime = 0
-        self.interval = interval
-        self.pixelX = pixelX
-        self.pixelY = pixelY
-        self.pixelState = initState
+    def __init__(self,pixelX,pixelY,initState,interval):     // Definición de variables
+        self.state = "Init"                         // Estado inicial píxel
+        self.startTime = 0                          // Tiempo de inicio
+        self.interval = interval                    // Para cambiar de estado
+        self.pixelX = pixelX                        // Posición x del píxel
+        self.pixelY = pixelY                        // Posición y del píxel
+        self.pixelState = initState                 // Estado inicial
 
-    def update(self):
+    def update(self):                                 // Para actualizar el estado
+        if self.state == "Init":                      // Inicia el píxel
+            self.startTime = utime.ticks_ms()         // Guarda el tiempo
+            self.state = "WaitTimeout"                // 
+            display.set_pixel(self.pixelX,self.pixelY,self.pixelState)  // Muestra el píxel
 
-        if self.state == "Init":
-            self.startTime = utime.ticks_ms()
-            self.state = "WaitTimeout"
-            display.set_pixel(self.pixelX,self.pixelY,self.pixelState)
-
-        elif self.state == "WaitTimeout":
-            if utime.ticks_diff(utime.ticks_ms(),self.startTime) > self.interval:
-                self.startTime = utime.ticks_ms()
-                if self.pixelState == 9:
+        elif self.state == "WaitTimeout":            // Si el píxel está esperando a que pase el tiempo
+            if utime.ticks_diff(utime.ticks_ms(),self.startTime) > self.interval:    // Si ya pasó el tiempo
+                self.startTime = utime.ticks_ms()    // Reinicia 
+                if self.pixelState == 9:             //
                     self.pixelState = 0
                 else:
                     self.pixelState = 9
