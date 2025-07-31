@@ -5,37 +5,39 @@
 ### Actividad 01
 Analizando un programa con una máquina de estados simple.
 
-``` js
+``` py
 from microbit import *
 import utime
 
 class Pixel:
-    def __init__(self,pixelX,pixelY,initState,interval):     // Definición de variables
-        self.state = "Init"                         // Estado inicial píxel
-        self.startTime = 0                          // Tiempo de inicio
-        self.interval = interval                    // Para cambiar de estado
-        self.pixelX = pixelX                        // Posición x del píxel
-        self.pixelY = pixelY                        // Posición y del píxel
-        self.pixelState = initState                 // Estado inicial
+    def __init__(self,pixelX,pixelY,initState,interval):     # Definición de variables
+        self.state = "Init"                         
+        self.startTime = 0                      
+        self.interval = interval                    
+        self.pixelX = pixelX                        
+        self.pixelY = pixelY                        
+        self.pixelState = initState                
 
-    def update(self):                                 // Para actualizar el estado
-        if self.state == "Init":                      // Inicia el píxel
-            self.startTime = utime.ticks_ms()         // Guarda el tiempo
-            self.state = "WaitTimeout"                // 
-            display.set_pixel(self.pixelX,self.pixelY,self.pixelState)  // Muestra el píxel
-
-        elif self.state == "WaitTimeout":            // Si el píxel está esperando a que pase el tiempo
-            if utime.ticks_diff(utime.ticks_ms(),self.startTime) > self.interval:    // Si ya pasó el tiempo
-                self.startTime = utime.ticks_ms()    // Reinicia 
-                if self.pixelState == 9:             //
+//Para actualizar el estado
+    def update(self):                                 # Inicia el pixel y guarda el tiempo
+        if self.state == "Init":                      
+            self.startTime = utime.ticks_ms()         
+            self.state = "WaitTimeout"                
+            display.set_pixel(self.pixelX,self.pixelY,self.pixelState)  # Muestra el pixel
+        elif self.state == "WaitTimeout":            # Cuando está esperando
+            if utime.ticks_diff(utime.ticks_ms(),self.startTime) > self.interval:    # Mira si ya pasó el tiempo que hay que esperar
+                self.startTime = utime.ticks_ms()    # Reinicia el tiempo
+                if self.pixelState == 9:             #  Si es 9 (está prendido) se apaga
                     self.pixelState = 0
                 else:
-                    self.pixelState = 9
-                display.set_pixel(self.pixelX,self.pixelY,self.pixelState)
+                    self.pixelState = 9              # Si no está prendido se prende
+                display.set_pixel(self.pixelX,self.pixelY,self.pixelState)  # Se muestra el pixel
 
+# Objetos
 pixel1 = Pixel(0,0,0,1000)
 pixel2 = Pixel(4,4,0,500)
 
+# Para que se actualice el pixel
 while True:
     pixel1.update()
     pixel2.update()
