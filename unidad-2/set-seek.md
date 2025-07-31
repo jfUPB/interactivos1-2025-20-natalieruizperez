@@ -44,10 +44,10 @@ while True:
 ```
 
 **Describe detalladamente cómo funciona este ejemplo.**
-Este programa hace que dos puntos en la pantalla del micro:bit se prendan y apaguen. Cada  dónde está, si está prendido o apagado, y cuánto tiempo debe esperar antes de cambiar. Primero, el punto se prepara y se prende o apaga por primera vez. Luego, espera el tiempo que le toca. Cuando ese tiempo pasa, cambia de prender a apagar o de apagar a prender, y actualiza la pantalla. Esto se repite todo el tiempo para que los puntos parpadeen a diferentes velocidades.
+Este ejemplo funciona por medio de un programa que hace que dos puntos en la pantalla del micro:bit se prendan y apaguen. Todo depende si está prendido o apagado, y si pasó el tiempo de espera para poder cambiar. Primero, el pixel se prende o apaga. Luego, espera el tiempo que le toca. Cuando el tiempo pasa cambia de estado que sería de prendido a apagado o viceversa y actualiza la pantalla. Esto se repite todo el tiempo para que los puntos parpadeen a diferentes velocidades.
 
 **Estados**
-Los estados en el programa serían las diferentes etapas en las que puede estar cada píxel. Primero está el estado init, que es cuando el píxel se prepara para empezar y se enciende o apaga por primera vez. Luego está el estado WaitTimeout, que es cuando el píxel espera a que pase el tiempo que se le indicó antes de cambiar de nuevo. Estos estados ayudan a controlar cuándo y cómo se actualiza cada píxel.
+Los estados en el programa serían las etapas del píxel. Primero está el estado init, que es cuando el píxel se prepara para empezar y se enciende o apaga por primera vez. Luego está el estado WaitTimeout, que es cuando el píxel espera a que pase el tiempo que se le indicó antes de cambiar de nuevo. Estos estados ayudan a controlar cuándo y cómo se actualiza cada píxel.
 
 **Eventos/inputs**
 Los inputs o eventos en el programa son el paso del tiempo. El programa está siempre revisando cuánto tiempo ha pasado para saber si ya debe cambiar el píxel. Cuando el tiempo que se puso como espera termina, el programa actúa y cambia el píxel.
