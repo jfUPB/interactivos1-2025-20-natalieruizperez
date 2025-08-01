@@ -181,4 +181,6 @@ Es programación concurrente porque mientras está esperando también puede hace
 **Acciones**
 Lo que sucede al realizar un evento.La acción que hace sería la cara feliz.
 
+
+Vectores es decir que estoy en hapy si pasa tanto tiempo va a yo no se que y luego espera yo no se que  (si estoy en el estado tal, presiono boton tal y pasa tan tidepo llego a ese estado, eso es un vector) sii algo falla tengo que revisar que paso 
 Describe y aplica al menos 3 vectores de prueba para el programa. Para definir un vector de prueba debes llevar al sistema a un estado, generar los eventos y observar el estado siguiente y las acciones que ocurrirán. Por tanto, un vector de prueba tiene unas condiciones iniciales del sistema, unos resultados esperados y los resultados realmente obtenidos. Si el resultado obtenido es igual al esperado entonces el sistema pasó el vector de prueba, de lo contrario el sistema puede tener un error.
