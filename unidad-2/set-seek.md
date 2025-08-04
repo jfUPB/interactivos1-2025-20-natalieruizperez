@@ -63,37 +63,81 @@ while True:
 ### Actividad 02
 Implementemos juntos un semáforo simple (rojo, amarillo, verde) utilizando una máquina de estados en Micropython. Representaremos cada color del semáforo con un LED del display del micro:bit.
 
-Escribe el código que soluciona este problema en tu bitácora.
+Anteriormente lo intenté hacer pero no fui capaz así que seguí avanzando con la actividad 3 que tuvimos la expicación en clase. Después de verla siento que me quedaron más claros los conceptos y al tomar como base el código de la actividad anterior fue más sencillo realizar el semáforo.
 
-Identifica los estados, eventos y acciones en tu código.
 ``` py
 from microbit import *
 import utime
 
-verde_pos = (2, 0)    
-rojo_pos = (2, 4)  
-amarillo_pos = (2, 2)     
+# Estados
+STATE_INIT = 0
+STATE_RED = 1
+STATE_YELLOW = 2
+STATE_GREEN = 3
 
-def encender_led(pos):
-    display.set_pixel(pos[0], pos[1], 9)  
+# Intervalos por color
+RED_INTERVAL = 3000
+YELLOW_INTERVAL = 1000
+GREEN_INTERVAL = 2000
 
-def apagar_todos():
-    display.clear()
+current_state = STATE_INIT
+start_time = 0
+interval = 0
 
+# Coordenadas rojo
+RED_X = 2
+RED_Y = 0
+
+# Coordenadas amarillo
+YELLOW_X = 2
+YELLOW_Y = 2
+
+# Coordenadas verde
+GREEN_X = 2
+GREEN_Y = 4
 
 while True:
-    encender_led(verde_pos)
-    utime.sleep(1)  
-    apagar_todos()
+    if current_state == STATE_INIT:
+        display.clear()
+        display.set_pixel(RED_X, RED_Y, 9)          # El 9 es para que se ilumine
+        start_time = utime.ticks_ms()
+        interval = RED_INTERVAL
+        current_state = STATE_RED
 
-    encender_led(amarillo_pos)
-    utime.sleep(2)  
-    apagar_todos()
+    elif current_state == STATE_RED:
+        if utime.ticks_diff(utime.ticks_ms(), start_time) > interval:
+            display.clear()
+            display.set_pixel(YELLOW_X, YELLOW_Y, 9)
+            start_time = utime.ticks_ms()
+            interval = YELLOW_INTERVAL
+            current_state = STATE_YELLOW
 
-    encender_led(rojo_pos)
-    utime.sleep(2)
-    apagar_todos()
-``` 
+    elif current_state == STATE_YELLOW:
+        if utime.ticks_diff(utime.ticks_ms(), start_time) > interval:
+            display.clear()
+            display.set_pixel(GREEN_X, GREEN_Y, 9)
+            start_time = utime.ticks_ms()
+            interval = GREEN_INTERVAL
+            current_state = STATE_GREEN
+
+    elif current_state == STATE_GREEN:
+        if utime.ticks_diff(utime.ticks_ms(), start_time) > interval:
+            display.clear()
+            display.set_pixel(RED_X, RED_Y, 9)
+            start_time = utime.ticks_ms()
+            interval = RED_INTERVAL
+            current_state = STATE_RED
+
+```
+
+ **Estados**
+ Los estados de este código son cuando se vuelve rojo, luego pasa a amarillo, despuésa verde y finalmente se reinicia el ciclo. También el init que es el inicial y en ningún momento el código vuelve a este, si lo hiciera es porque hay un error. 
+ 
+ **Eventos** 
+ Serían las condiciones, en este caso las de tiempo. Por ejemplo el programa compara si ya el tiempo actual pasó el intervalo de tiempo asignado (utime.ticks_ms(), start_time) > interval
+ 
+ **Acciones**
+ Las acciones son que el microbit enciende en la posición asignada un pixel y luego lo apaga. También cambia de estado y guarda los tiempos para compararlos.
 
 ---
 ### Actividad 03
@@ -162,25 +206,23 @@ while True:
             current_state = STATE_HAPPY
 ``` 
 ¿Cómo es posible estructurar una aplicación usando una máquina de estados para poder atender varios eventos de manera concurrente?
-Es programación concurrente porque mientras está esperando también puede hacer otra acción, de tal forma optimiza las tareas al liberar la cpu para que muchas acciones puedan estar usando su propio código.
 
 ¿Cómo haces para probar que el programa está correcto?
+Se muede hacer un diagrama analizando cada una de las partes del código para comprobar la lógica y luego analizar el programa.
 
 **Explica por qué decimos que este programa permite realizar de manera concurrente varias tareas.**
-
-**Identifica los estados, eventos y acciones en el programa.**
+Es programación concurrente porque mientras está esperando también puede hacer otra acción, de tal forma optimiza las tareas al liberar la cpu.
 
 **Estados**
 Son condiciones, en este caso sería al principio cuando espera que pase un segundo y medio. Otro estado sería cuando cambia a una cara sonriente y luego a la triste. Finalmente de triste pasa a happy
 
 **Eventos**
-Es como una acción que hace que algo cambie. No hay eventos en la primera parte cuando se muestra la cara feliz. Si presiono A ocurre un evento y puede cambiar el estado actual.
-
-Es programación concurrente porque mientras está esperando también puede hacer otra acción, de tal forma optimiza las tareas al liberar la cpu para que muchas acciones puedan estar usando su propio código.
+Es como una acción que hace que algo cambie. No hay eventos en la primera parte cuando se muestra la cara feliz, pero despuéssi hay uno cuando presiono A. También hay otro que revisa que el tiempo actual haya pasado el intervalo.
 
 **Acciones**
-Lo que sucede al realizar un evento.La acción que hace sería la cara feliz.
+Son las que se hacen cuando ocurre un evento entonces las acciones serían cuando se muestran las caras. También cuando guarda los tiempos y cambia de estado.
 
 
 Vectores es decir que estoy en hapy si pasa tanto tiempo va a yo no se que y luego espera yo no se que  (si estoy en el estado tal, presiono boton tal y pasa tan tidepo llego a ese estado, eso es un vector) sii algo falla tengo que revisar que paso 
 Describe y aplica al menos 3 vectores de prueba para el programa. Para definir un vector de prueba debes llevar al sistema a un estado, generar los eventos y observar el estado siguiente y las acciones que ocurrirán. Por tanto, un vector de prueba tiene unas condiciones iniciales del sistema, unos resultados esperados y los resultados realmente obtenidos. Si el resultado obtenido es igual al esperado entonces el sistema pasó el vector de prueba, de lo contrario el sistema puede tener un error.
+
