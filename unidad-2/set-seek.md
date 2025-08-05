@@ -205,10 +205,9 @@ while True:
             interval = HAPPY_INTERVAL
             current_state = STATE_HAPPY
 ``` 
-¿Cómo es posible estructurar una aplicación usando una máquina de estados para poder atender varios eventos de manera concurrente?
 
-¿Cómo haces para probar que el programa está correcto?
-Se muede hacer un diagrama analizando cada una de las partes del código para comprobar la lógica y luego analizar el programa.
+**¿Cómo haces para probar que el programa está correcto?**
+Se puede hacer un diagrama analizando cada una de las partes del código para comprobar la lógica y luego analizar el programa.
 
 **Explica por qué decimos que este programa permite realizar de manera concurrente varias tareas.**
 Es programación concurrente porque mientras está esperando también puede hacer otra acción, de tal forma optimiza las tareas al liberar la cpu.
@@ -222,7 +221,10 @@ Es como una acción que hace que algo cambie. No hay eventos en la primera parte
 **Acciones**
 Son las que se hacen cuando ocurre un evento entonces las acciones serían cuando se muestran las caras. También cuando guarda los tiempos y cambia de estado.
 
+**Describe y aplica al menos 3 vectores de prueba para el programa.**
+-El programa empieza en el estado INIT y sin eventos muestra la carita feliz y pasa a lestado WAITINHAPPY, después espera en happy y si pasan 1.5 segundos entonces se muestra una cara sonriente y pasa a WAITINSMILE. En cambio si se presiona A se muestra la carita triste y pasa a WAITINSAD.
+-En WAITINSMILE espera un segundo y una vez pasado esto muestra una carita triste. Después cambia a WAITINSAD.
+-En WAITINSAD espera 2 segundos y una vez pasados muestran una carita feliz y va al estado de WAITINHAPPY. 
 
-Vectores es decir que estoy en hapy si pasa tanto tiempo va a yo no se que y luego espera yo no se que  (si estoy en el estado tal, presiono boton tal y pasa tan tidepo llego a ese estado, eso es un vector) sii algo falla tengo que revisar que paso 
-Describe y aplica al menos 3 vectores de prueba para el programa. Para definir un vector de prueba debes llevar al sistema a un estado, generar los eventos y observar el estado siguiente y las acciones que ocurrirán. Por tanto, un vector de prueba tiene unas condiciones iniciales del sistema, unos resultados esperados y los resultados realmente obtenidos. Si el resultado obtenido es igual al esperado entonces el sistema pasó el vector de prueba, de lo contrario el sistema puede tener un error.
+
 
