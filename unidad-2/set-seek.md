@@ -207,24 +207,33 @@ while True:
 ``` 
 
 **¿Cómo haces para probar que el programa está correcto?**
-Se puede hacer un diagrama analizando cada una de las partes del código para comprobar la lógica y luego analizar el programa.
+
+  Se puede hacer un diagrama analizando cada una de las partes del código para comprobar la lógica y luego analizar el programa.
 
 **Explica por qué decimos que este programa permite realizar de manera concurrente varias tareas.**
-Es programación concurrente porque mientras está esperando también puede hacer otra acción, de tal forma optimiza las tareas al liberar la cpu.
+
+  Es programación concurrente porque mientras está esperando también puede hacer otra acción, de tal forma optimiza las tareas al liberar la cpu.
 
 **Estados**
+
 Son condiciones, en este caso sería al principio cuando espera que pase un segundo y medio. Otro estado sería cuando cambia a una cara sonriente y luego a la triste. Finalmente de triste pasa a happy
 
 **Eventos**
+
 Es como una acción que hace que algo cambie. No hay eventos en la primera parte cuando se muestra la cara feliz, pero despuéssi hay uno cuando presiono A. También hay otro que revisa que el tiempo actual haya pasado el intervalo.
 
 **Acciones**
+
 Son las que se hacen cuando ocurre un evento entonces las acciones serían cuando se muestran las caras. También cuando guarda los tiempos y cambia de estado.
 
 **Describe y aplica al menos 3 vectores de prueba para el programa.**
--El programa empieza en el estado INIT y sin eventos muestra la carita feliz y pasa a lestado WAITINHAPPY, después espera en happy y si pasan 1.5 segundos entonces se muestra una cara sonriente y pasa a WAITINSMILE. En cambio si se presiona A se muestra la carita triste y pasa a WAITINSAD.
--En WAITINSMILE espera un segundo y una vez pasado esto muestra una carita triste. Después cambia a WAITINSAD.
--En WAITINSAD espera 2 segundos y una vez pasados muestran una carita feliz y va al estado de WAITINHAPPY. 
+
+  -El programa empieza en el estado INIT y sin eventos muestra la carita feliz y pasa a lestado WAITINHAPPY, después espera en happy y si pasan 1.5 segundos entonces se muestra una cara sonriente y pasa a WAITINSMILE. En cambio si se presiona A se muestra la carita triste y pasa a WAITINSAD.
+
+  -En WAITINSMILE espera un segundo y una vez pasado esto muestra una carita triste. Después cambia a WAITINSAD.
+
+  -En WAITINSAD espera 2 segundos y una vez pasados muestran una carita feliz y va al estado de WAITINHAPPY. 
+
 
 
 
