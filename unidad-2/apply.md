@@ -14,7 +14,7 @@ Diseña la máquina de estados que solucione este problema: En un escape room se
 Tiene el estado INIT que es donde se inicializa con un tiempo de 20 segundos y se prepara para configurarse. El estado CONFIG que es para modificar el tiempo de la bomba con botones. También esta El estado ARMED inicia hace la cuenta regresiva cuando que fue agitado. Por último, el estado EXPLOTION que es cuando ya explotó y reinicia el tiempo. 
 
 **Eventos**
-Serían el paso del tiempo y cuando se presionan los botones para modificarlo. También cuando se agita el microbit.
+Serían el paso del tiempo y cuando se presionan los botones para modificarlo y el touch. También cuando se agita el microbit.
 
 **Acciones**
 Son cuando se muestra el tiempo, también cuando se activa el speaker.
@@ -70,11 +70,24 @@ while True:
             state = STATE_EXPLOTION
 
     elif state == STATE_EXPLOTION:
-        explosion_time = 20
-        display.show(str(explosion_time))
-        state = STATE_CONFIG
-``` 
-La definición de los vectores de prueba básicos que permiten verificar el correcto funcionamiento del programa.
+        if pin_logo.is_touched():
+            explosion_time = 20
+            display.show(str(explosion_time))
+            state = STATE_CONFIG
+
+```
+
+**Definición de los vectores de prueba básicos que permiten verificar el correcto funcionamiento del programa.**
+
+  -El programa empieza en el estado INIT y sin eventos muestra el tiempo de explosión que es 20 y pasa al estado CONFIG.
+  
+  -En CONfIG según el botón que se presiona se sube o baja el tiempo, este no puede ser mayor a 60 ni menor a 10. Después se muestra el tiempo actualizado. Si se sacude el microbit se cambia al estado ARMED.
+  
+  -En ARMED le resta un segundo al tiempo de la bomba hasta que llega a 0, después de eso enciende los speakers y cambia al estado EXPLOSION. 
+
+  - En EXPLOSION si se toca el touch se reincia el tiempo y se muestra en la pantalla, luego vuelve al estado CONFIG.
+
+
 
 
 
