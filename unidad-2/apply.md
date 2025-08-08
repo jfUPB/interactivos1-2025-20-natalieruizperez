@@ -11,7 +11,7 @@ Diseña la máquina de estados que solucione este problema: En un escape room se
 <img width="860" height="714" alt="image" src="https://github.com/user-attachments/assets/141d5e2b-7cd3-4ab5-b15b-d549dcc7ad82" />
 
 **Estados**
-Tiene el estado INIT que es donde se inicializa con un tiempo de 20 segundos y se prepara para configurarse. El estado CONFIG que es para modificar el tiempo de la bomba con botones. También esta El estado ARMED inicia hace la cuenta regresiva cuando que fue agitado. Por último, el estado EXPLOTION que es cuando ya explotó y reinicia el tiempo. 
+Tiene el estado INIT que es donde se inicializa con un tiempo de 20 segundos y se prepara para configurarse. El estado CONFIG que es para modificar el tiempo de la bomba con botones. También esta El estado ARMED inicia hace la cuenta regresiva cuando que fue agitado. Por último, el estado EXPLOTION que es cuando ya explotó y reinicia el tiempo al tocar el botón touch. 
 
 **Eventos**
 Serían el paso del tiempo y cuando se presionan los botones para modificarlo y el touch. También cuando se agita el microbit.
@@ -86,6 +86,7 @@ while True:
   - En ARMED le resta un segundo al tiempo de la bomba hasta que llega a 0, después de eso enciende los speakers y cambia al estado EXPLOSION. 
 
   - En EXPLOSION si se toca el touch se reincia el tiempo y se muestra en la pantalla, luego vuelve al estado CONFIG.
+
 
 
 
