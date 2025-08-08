@@ -23,6 +23,8 @@ Son cuando se muestra el tiempo, también cuando se activa el speaker.
 Implementando la Bomba Temporizada. 
 
 **Código**
+
+``` py
 from microbit import *
 import utime
 
@@ -71,7 +73,8 @@ while True:
         explosion_time = 20
         display.show(str(explosion_time))
         state = STATE_CONFIG
-
+``` 
 La definición de los vectores de prueba básicos que permiten verificar el correcto funcionamiento del programa.
+
 
 
