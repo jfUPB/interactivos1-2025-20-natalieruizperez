@@ -79,13 +79,14 @@ while True:
 
 **Definición de los vectores de prueba básicos que permiten verificar el correcto funcionamiento del programa.**
 
-  -El programa empieza en el estado INIT y sin eventos muestra el tiempo de explosión que es 20 y pasa al estado CONFIG.
+  - El programa empieza en el estado INIT y sin eventos muestra el tiempo de explosión que es 20 y pasa al estado CONFIG.
   
-  -En CONfIG según el botón que se presiona se sube o baja el tiempo, este no puede ser mayor a 60 ni menor a 10. Después se muestra el tiempo actualizado. Si se sacude el microbit se cambia al estado ARMED.
+  - En CONfIG según el botón que se presiona se sube o baja el tiempo, este no puede ser mayor a 60 ni menor a 10. Después se muestra el tiempo actualizado. Si se sacude el microbit se cambia al estado ARMED.
   
-  -En ARMED le resta un segundo al tiempo de la bomba hasta que llega a 0, después de eso enciende los speakers y cambia al estado EXPLOSION. 
+  - En ARMED le resta un segundo al tiempo de la bomba hasta que llega a 0, después de eso enciende los speakers y cambia al estado EXPLOSION. 
 
   - En EXPLOSION si se toca el touch se reincia el tiempo y se muestra en la pantalla, luego vuelve al estado CONFIG.
+
 
 
 
