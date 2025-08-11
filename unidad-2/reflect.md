@@ -17,7 +17,11 @@ La máquina de estados es más útil porque gracias a esta es posible hacer cosa
 
 **Imagina que tienes que añadir una nueva funcionalidad a la bomba temporizada: si se agita (shake) el micro:bit mientras la cuenta regresiva está activa, el tiempo se reduce a la mitad. ¿Cómo modificarías tu diagrama de máquina de estados para incluir este nuevo evento y acción?**
 
+Para incluir esta nueva acción modificaría mi diagrama 
+
 **Explica qué es un “vector de prueba” y por qué es una herramienta crucial para verificar que una máquina de estados funciona como se espera.**
+
+Un vector de prueba es uno en el que se describe qué es lo que va a hacer, se menciona el estado, el evento, la acción y a qué otro estado transita, está herrmaienta es crucial para verificar que el programa funciona como se espera porque se tiene claro que debería de hacer.
 
 #### Parte 2: reflexión sobre tu proceso (Metacognición)
 
@@ -44,16 +48,21 @@ Coevaluación
 Feedback
 
 **Continuar: ¿Qué actividad, explicación o ejemplo de esta unidad te ayudó más a entender el poder de las máquinas de estados? ¿Qué elemento consideras que es indispensable y debería mantener?**
-El ejemplo que más me gustó fue en clase cuando volvimos a hacer el 
+El ejemplo que más me gustó fue en clase cuando volvimos a hacer el diagrama para las diferentes caras, me dio muy buenas bases para la realizació del diagrama de la bomba. Me parece indispensable mantener este tipo de clases en donde trabajamos juntos en el taller ya que da espacio a que se resuelvan dudas y se entienda mejor el tema.
 
 **Dejar de hacer: ¿Hubo algún paso o actividad que te pareció confuso, innecesariamente complicado o que aportó poco a tu aprendizaje? ¿Qué cambiarías o eliminarías?**
+No me pareció que alguna estuviese excesivamente complicada, si tenían un nivel de dificultad mayor en comparación con las pasadas pero me gusta que vaya aumentando a medida que avanzamos en la unidad.
 
 **Empezar a hacer: ¿Qué te habría ayudado a entender mejor?**
+La verdad estoy satisfecha, a mi me ayuda a entender particularmente las clases en las que hacmos ejercicios del taller y como tuvimos varias de esas no tuve problemas.
 
 **Ritmo y dificultad: En una escala del 1 (muy fácil) al 5 (muy difícil), ¿Cómo calificarías la dificultad de pasar del análisis de un programa (Actividad 03) al diseño desde cero de uno complejo (Actividad 04 y 05)? ¿Por qué?**
+Le daría 3 porque me pareció justo y adecuado, hicimos en las actividades anteriores puntos que nos sirvieran para abordar los que son con mayor dificultad.
 
 **Comentario adicional: ¿Hay algo más que te gustaría compartir sobre tu proceso de aprendizaje en esta unidad? ¿Algún momento de frustración o de “¡Aha!” que quieras destacar?**
+No me sentí frustrada, mi único momento "aha" fue cuando entendí por qué en el diagrama un estado podía tener una flecha hacia si mismo.
   
+
 
 
 
