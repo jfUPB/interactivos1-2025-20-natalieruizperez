@@ -13,11 +13,13 @@ Una maquina de estados es aquella que permite crear una secuencia de sucesos. A 
 
 **Explica por qué la técnica de máquina de estados es tan útil para gestionar la “concurrencia” (atender un temporizador y botones “al mismo tiempo”) en un dispositivo con un solo hilo de ejecución como el micro:bit. ¿Qué problema soluciona en comparación con usar funciones como sleep()?**
 
-La máquina de estados es más útil porque gracias a esta es posible hacer cosas y al mismo tiempo hace que el programa
+La máquina de estados es más útil porque gracias a esta es posible hacer cosas y al mismo tiempo hace que el programa funcione, en cambio el sleep duerme todas las funciones.
 
 **Imagina que tienes que añadir una nueva funcionalidad a la bomba temporizada: si se agita (shake) el micro:bit mientras la cuenta regresiva está activa, el tiempo se reduce a la mitad. ¿Cómo modificarías tu diagrama de máquina de estados para incluir este nuevo evento y acción?**
 
-Para incluir esta nueva acción modificaría mi diagrama 
+Este era mi diagrama <img width="860" height="714" alt="image" src="https://github.com/user-attachments/assets/5776a781-c6f6-4bdc-8c33-428c20071e21" />
+
+Pondría que si se está agitando explosion_time=explosion_time/2, esto iría en la parte de eventos y ocurriría en el estado ARMED, la acción sería mostrar como la cuenta regresiva se reduce a la mitad.
 
 **Explica qué es un “vector de prueba” y por qué es una herramienta crucial para verificar que una máquina de estados funciona como se espera.**
 
@@ -31,7 +33,7 @@ El diagrama me pareció más desafiante ya que no habíamos visto antes un cuadr
 
 **2. Describe un error o “bug” que encontraste al implementar tu programa. ¿Cómo te ayudó pensar en términos de estados, eventos y transiciones a identificar y solucionar el problema?**
 
-Un error que tuve 
+Un error que tuve fue con el touch, que intentaba poniendo button touch y palabras parecidas pero no sabía como ponerlo. Los mayores errores que tuve fue cuando hacía el diagrama, a la hora de implementarlo en el código no tuve problemas mayores porque la lógica estaba bien.
 
 **3. El problema de la bomba era complejo. ¿Qué estrategia usaste para abordarlo? ¿Comenzaste con una versión simple y añadiste funcionalidades poco a poco?**
 
@@ -41,11 +43,23 @@ Para el diagrama lo empecé en clase para aprovechar el tiempo al máximo y pode
 
 Estas máquinas de estados pueden ser muy útiles a la hora de programar en unity. Lo que más me gusta de este curso es que la lógica nos sirve no solamente para el curso si no también para aplicarlo en códigos futuros.
 
-### Actividad 07
-Coevaluación
+### Actividad 07 - Coevaluación
 
-### Actividad 08
-Feedback
+**1. Encuentra un compañero de trabajo.**
+
+  Fabricio Toro
+
+**2. Intercambien las URLs de sus bitácoras de aprendizaje.**
+
+  https://github.com/jfUPB/interactivos1-2025-20-CrockerHacker101/blob/unidad2/apply/unidad-2/apply.md
+
+**3. Revisa con atención las entradas de tu compañero para las Actividades 04 (diagrama de la bomba) y 05 (código y pruebas).
+Analiza de manera crítica el diseño y la implementación de tu compañero y deja un comentario de retroalimentación específico y constructivo.**
+
+  Al revisar la bitacora de la unidad 2 en la parte de apply, vi que no tenía nada. Le recomiendo que intente manejar mejor su tiempo y tener una libreta o donde anotar las actividades que hay que hacer y si no entiende busque tutorías después de la clase o preguntar cuando estamos haciendo una actividad.
+
+
+### Actividad 08 - Feedback
 
 **Continuar: ¿Qué actividad, explicación o ejemplo de esta unidad te ayudó más a entender el poder de las máquinas de estados? ¿Qué elemento consideras que es indispensable y debería mantener?**
 El ejemplo que más me gustó fue en clase cuando volvimos a hacer el diagrama para las diferentes caras, me dio muy buenas bases para la realizació del diagrama de la bomba. Me parece indispensable mantener este tipo de clases en donde trabajamos juntos en el taller ya que da espacio a que se resuelvan dudas y se entienda mejor el tema.
@@ -57,11 +71,14 @@ No me pareció que alguna estuviese excesivamente complicada, si tenían un nive
 La verdad estoy satisfecha, a mi me ayuda a entender particularmente las clases en las que hacmos ejercicios del taller y como tuvimos varias de esas no tuve problemas.
 
 **Ritmo y dificultad: En una escala del 1 (muy fácil) al 5 (muy difícil), ¿Cómo calificarías la dificultad de pasar del análisis de un programa (Actividad 03) al diseño desde cero de uno complejo (Actividad 04 y 05)? ¿Por qué?**
+
 Le daría 3 porque me pareció justo y adecuado, hicimos en las actividades anteriores puntos que nos sirvieran para abordar los que son con mayor dificultad.
 
 **Comentario adicional: ¿Hay algo más que te gustaría compartir sobre tu proceso de aprendizaje en esta unidad? ¿Algún momento de frustración o de “¡Aha!” que quieras destacar?**
+
 No me sentí frustrada, mi único momento "aha" fue cuando entendí por qué en el diagrama un estado podía tener una flecha hacia si mismo.
   
+
 
 
 
