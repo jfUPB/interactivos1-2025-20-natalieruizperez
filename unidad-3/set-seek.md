@@ -10,7 +10,7 @@ from microbit import *
 import utime
 
 class Semaforo:
-    def _init_(self,tr,ta,tv,col):
+    def _init_(self,tr,ta,tv,col):                
         self.tr = tr 
         self.ta = ta 
         self.tv = tv
@@ -51,6 +51,22 @@ while True:
     semaforo2.update()
     semaforo3.update()
 ```
+### Actividad 03 
+Hecha en clase
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ---
 
@@ -72,3 +88,4 @@ Las acciones serían ver en la pantalla como aumenta o disminuye el tiempo, tamb
 
 **2. Crear una tabla con los vectores de prueba. La tabla debe tener 4 columnas por vector y puedes agrupar vectores en un gran vector.**
 Un vector es el estado en el que estoy, el evento que voy a probar, que acciones van a ocurrir y a que estado debe de pasar.
+
