@@ -5,6 +5,7 @@
 ### Actividad 01
 Hecha en clase
 
+``` py
 from microbit import *
 import utime
 
@@ -49,28 +50,25 @@ while True:
     semaforo1.update()
     semaforo2.update()
     semaforo3.update()
+```
 
 ---
-
-### Actividad 02
-Vas a retomar la bomba de la unidad anterior y le adicionarás algunas funcionalidades:
-  -Una vez la bomba esté armada es posible desactivarla con la secuencia botón A, botón B, botón A.
-  -Si la secuencia se ingresa correctamente la bomba pasará de nuevo al modo de configuración de lo contrario continuará la fatal cuenta regresiva.
-
----
-
-### Actividad 03
-
-Estado en q estoy evento que voy a rpobar que acciones van a oucrrir y a que estado debe de pasar
 
 ### Actividad 05
 **1. Construye el modelo de la bomba 3.0. Como ya tienes el código puedes tener un modelo muy preciso.**
 
 **Estados**
 
-Los estados seran CONFIG que es el estado inicial donde se puede cambiar el tiempo. Luego está ARMED que es cuando empieza la cuenta regresiva y donde se puede desactivar la bomba si se presionan los botones que son y por último esta EXPLODED que ocurre cuando el contador llega a 0 y se reinciia con el evento T.
+Los estados seran CONFIG que es el estado inicial donde se puede cambiar el tiempo. Luego está ARMED que es cuando empieza la cuenta regresiva y donde se puede desactivar la bomba si se presionan los botones que son y por último esta EXPLODED que ocurre cuando el contador llega a 0 y se reinciia con el evento T.  También hay otro que revisa que el tiempo actual haya pasado el intervalo.
 
 **Eventos**
-Los eventos ser'ian
 
-Eventos
+Los eventos serían cuando se presionan los botones que pueden ser A o B que sirven para sumar o restar segundos. También cuando se sacude que hace que empiece la cuenta regresiva y la T que reinicia el programa.
+
+**Acciones**
+
+Las acciones serían ver en la pantalla como aumenta o disminuye el tiempo, también cuando se resetea. Otra acción sería cuando muestra la calavera al llegar a 0.
+
+
+**2. Crear una tabla con los vectores de prueba. La tabla debe tener 4 columnas por vector y puedes agrupar vectores en un gran vector.**
+Un vector es el estado en el que estoy, el evento que voy a probar, que acciones van a ocurrir y a que estado debe de pasar.
