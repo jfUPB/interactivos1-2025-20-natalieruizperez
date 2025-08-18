@@ -61,12 +61,14 @@ Hecha en clase
 ### Actividad 05
 **1. Construye el modelo de la bomba 3.0. Como ya tienes el código puedes tener un modelo muy preciso.**
 
-<img width="937" height="752" alt="image" src="https://github.com/user-attachments/assets/a3482ef7-40a9-4868-986b-03d40fa32736" />
+<img width="767" height="630" alt="image" src="https://github.com/user-attachments/assets/f9ed0f8b-b30f-4e99-8d0c-b83d70a25887" />
+
+
 
 
 **Estados**
 
-Los estados seran CONFIG que es el estado inicial donde se puede cambiar el tiempo. Luego está ARMED que es cuando empieza la cuenta regresiva y donde se puede desactivar la bomba si se presionan los botones que son y por último esta EXPLODED que ocurre cuando el contador llega a 0 y se reinciia con el evento T.  También hay otro que revisa que el tiempo actual haya pasado el intervalo.
+Los estados seran CONFIG que es el estado inicial donde se puede cambiar el tiempo con los botones. Luego está ARMED que es cuando empieza la cuenta regresiva al sacudirlo y donde se puede desactivar la bomba si se presionan los botones que son y por último esta EXPLODED que ocurre cuando el contador llega a 0 y se reincia con el evento T.  También hay otro que revisa que el tiempo actual haya pasado el intervalo.
 
 **Eventos**
 
@@ -79,5 +81,9 @@ Las acciones serían ver en la pantalla como aumenta o disminuye el tiempo, tamb
 
 **2. Crear una tabla con los vectores de prueba. La tabla debe tener 4 columnas por vector y puedes agrupar vectores en un gran vector.**
 Un vector es el estado en el que estoy, el evento que voy a probar, que acciones van a ocurrir y a que estado debe de pasar.
+
+<img width="856" height="506" alt="image" src="https://github.com/user-attachments/assets/378b77a6-3b26-472a-a52b-4efaeafb6ede" />
+
+
 
 
