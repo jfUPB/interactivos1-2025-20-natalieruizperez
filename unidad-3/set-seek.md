@@ -56,22 +56,13 @@ Hecha en clase
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 ---
 
 ### Actividad 05
 **1. Construye el modelo de la bomba 3.0. Como ya tienes el código puedes tener un modelo muy preciso.**
+
+<img width="937" height="752" alt="image" src="https://github.com/user-attachments/assets/a3482ef7-40a9-4868-986b-03d40fa32736" />
+
 
 **Estados**
 
@@ -88,4 +79,5 @@ Las acciones serían ver en la pantalla como aumenta o disminuye el tiempo, tamb
 
 **2. Crear una tabla con los vectores de prueba. La tabla debe tener 4 columnas por vector y puedes agrupar vectores en un gran vector.**
 Un vector es el estado en el que estoy, el evento que voy a probar, que acciones van a ocurrir y a que estado debe de pasar.
+
 
