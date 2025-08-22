@@ -11,15 +11,13 @@
 
 Una máquina de estados es aquella que permite cambiar entre acciones. Los cuatro componentes fundamentales de esta unidad son los estado, eventos, acciones y vectores de prueba.
 
-
 **2. Explica por qué la técnica de máquina de estados es tan útil para gestionar la “concurrencia” (atender varios eventos y tareas “al mismo tiempo”) en un dispositivo con un solo hilo de ejecución como el micro:bit o en p5.js. ¿Qué problema soluciona en comparación con usar funciones como sleep()?**
 
 El sleep soluciona el problema de una posible saturación al enviar muchos mensajes en un mismo tiempo. La concurriencia es útil a la hora de manejar una máquina de estados porque permite que sucedna varias accines al mismo tiempo.
 
-
 **3. Imagina que tienes que añadir una nueva funcionalidad a la bomba: si se recibe un evento especial (por ejemplo, una combinación de botones o un comando serial) mientras la cuenta regresiva está activa, el tiempo se reduce a la mitad. ¿Cómo modificarías tu diagrama de máquina de estados para incluir este nuevo evento y acción?**
 
-Lo agregaría en
+Haría que ARMED transicione a un nuevo estado llamado INCORRECT donde el evento sería digitar incorrectamente la contraseña y la acción que el tiempo actual del contador se reduzca a la mitad.
 
 **4. Explica qué es un “vector de prueba” y por qué es una herramienta crucial para verificar que una máquina de estados funciona como se espera.**
 
@@ -64,10 +62,13 @@ Las clases exlicativas a medida que avanzabamos en la unidad fueron muy útilesx
 
 
 **Ritmo y dificultad: En una escala del 1 (muy fácil) al 5 (muy difícil), ¿Cómo calificarías la dificultad de pasar del análisis de un programa a diseñar y programar uno complejo? ¿Por qué?**
+
 3, me pareció que tenía una dificultad adecuada y se podían llevar a cabo las actividades.
 
 **Comentario adicional: ¿Hay algo más que te gustaría compartir sobre tu proceso de aprendizaje en esta unidad? ¿Algún momento de frustración o de “¡Aha!” que quieras destacar?**
-No.
+
+Cuando entendí que no bastaba con el código en p5js para que funcionara en el microbit ya que era esencial usar uart para que al presionar un botón se enviara la señal. El concepto de uart siento que no lo tengo muy claro.
+
 
 
 
