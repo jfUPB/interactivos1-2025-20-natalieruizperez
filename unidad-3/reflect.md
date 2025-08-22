@@ -42,7 +42,7 @@ Lo que hice primero fue identificar los eventos, acciones y estados. Como ya ten
 
 Sería super útil a la hora de programar los comportamientos de un jefe para un videojuego en unity. En taller 2 usé una máquina de estados para eso pero en su momento no sabía a profundidad que era lo que sucedía. Además de esto me parece que se prestaría para muchas cosas más.
 
-
+---
 
 ### Actividad 09 - Feedback
 
@@ -68,6 +68,7 @@ Las clases exlicativas a medida que avanzabamos en la unidad fueron muy útilesx
 **Comentario adicional: ¿Hay algo más que te gustaría compartir sobre tu proceso de aprendizaje en esta unidad? ¿Algún momento de frustración o de “¡Aha!” que quieras destacar?**
 
 Cuando entendí que no bastaba con el código en p5js para que funcionara en el microbit ya que era esencial usar uart para que al presionar un botón se enviara la señal. El concepto de uart siento que no lo tengo muy claro.
+
 
 
 
