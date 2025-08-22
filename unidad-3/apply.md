@@ -3,7 +3,7 @@
 
 ## 🛠 Fase: Apply
 
-### Actividad 07
+### Actividad 06
 
 Este es el primer código que hice pensando en crear botones como los del microbit e intente hacer una función para clickear el botón, para comprobarlo quería que se mostrara un texto pero no funcionó por lo que escuché que se podía de hacer de otra forma y esta era con las teclas del computador.
 
@@ -411,6 +411,7 @@ while True:
         sleep(500)
 ```
   
+
 
 
 
