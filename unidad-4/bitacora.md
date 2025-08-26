@@ -8,6 +8,7 @@
 https://editor.p5js.org/generative-design/sketches/HJ3gqcq6kN
 
 Me gustó mucho este código, al principio cuando lo ví pensé que funcionaba de forma aleatoria pero luego de explorar en p5js me di cuenta de que su funcionamiento tiene una lógica. Al moverme de derecha a izquierda con el mouse le cambio el grosor a un conjunto de líneas, x+ para agrandar y x- para volverlas delgadas. Lo mismo pasa con un conjunto de líneas solo que estas se modifican al usar y- para aumentar el grosor y y+ para que sean más delgadas. El poder encontrar orden en algo que inicialmente no lo tenía me llamó la atención.
+
 ---
 
 **Actividad 2**
@@ -49,10 +50,14 @@ La recepción de datos se hace después de hacer la conexión serial, recibe dat
 Los datos se separan para qué el programa sepa que son independientes y se termina con un salto de línea para que sepa que ahí finaliza la instrucción.
 
 **¿Qué crees que pasaría si no se separan los datos con comas y no terminan con un salto de línea?**
-El programa lo tomaría como un mismo valor por lo que no                                               
+El programa lo tomaría como un mismo valor por lo que no lograriíamos nuestro propósito y además habría error. El 0 indica que ya se puede procesar, sin el salto de línea no habría forma de que el programa sepa que se debe de procesar.                                               
 **Para qué crees que se usa la función sleep(100)? ¿Qué pasaría si no se usara?**
+
+
 **Observa cómo cambian los valores de xValue y yValue a medida que el micro:bit se inclina hacia la izquierda, derecha, adelante y atrás. ¿Qué valores toman xValue y yValue en cada caso?**
+
 **¿Qué valores toman aState y bState cuando presionas los botones A y B?**
+
 **Observa qué ocurre si en vez de is_pressed() usas was_pressed(). ¿Qué diferencias encuentras?**
 
 ---
@@ -78,5 +83,6 @@ Código modificado:
 ## Video
 
 [Video demostratativo](URL)
+
 
 
