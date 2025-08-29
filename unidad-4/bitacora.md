@@ -36,29 +36,47 @@ while True:
     sleep(100) # Envia datos a 10 Hz      #Esto es para que el sistema no se sature si apreto muchas cosas a la vez, asi hay una pausa entre cada acción
 ```
 
-**¿Qué información se está enviando? ¿Cómo se está enviando?**
+**1. ¿Qué información se está enviando? ¿Cómo se está enviando?**
 
 Se envía por medio del uart al presionar un botón o agitarlo.
 
-**Qué significa esta parte del código: "{},{},{},{}\n".format(xValue, yValue, aState,bState)**
+**2. Qué significa esta parte del código: "{},{},{},{}\n".format(xValue, yValue, aState,bState)**
+En el código se mostraran esos valores en el orden que aparecen en los corchetes. Es para que se empaqueten los datos.
 
-**Observa en la aplicación SerialTerminal cómo se ven los datos que se están enviando. ¿Qué puedes inferir de la estructura de los datos?**
+**3. Observa en la aplicación SerialTerminal cómo se ven los datos que se están enviando. ¿Qué puedes inferir de la estructura de los datos?**
 
 La recepción de datos se hace después de hacer la conexión serial, recibe datos que se muestran en HEX y cada uno de estos valores. Pr la página de "asciitable.com" se pueden traducir estos datos ya que cada número equivale a algo.
 
-**¿Por qué se separan los datos con comas y se termina con un salto de línea?**
+**4. ¿Por qué se separan los datos con comas y se termina con un salto de línea?**
+
 Los datos se separan para qué el programa sepa que son independientes y se termina con un salto de línea para que sepa que ahí finaliza la instrucción.
 
-**¿Qué crees que pasaría si no se separan los datos con comas y no terminan con un salto de línea?**
-El programa lo tomaría como un mismo valor por lo que no lograriíamos nuestro propósito y además habría error. El 0 indica que ya se puede procesar, sin el salto de línea no habría forma de que el programa sepa que se debe de procesar.                                               
+**5. ¿Qué crees que pasaría si no se separan los datos con comas y no terminan con un salto de línea?**
+El programa lo tomaría como un mismo valor por lo que no lograriíamos nuestro propósito y además habría error. El 0 indica que ya se puede procesar, sin el salto de línea no habría forma de que el programa sepa que se debe de procesar.   
+
 **Para qué crees que se usa la función sleep(100)? ¿Qué pasaría si no se usara?**
 
+Se usa para que no se puedan enviar muchos datos al mismo tiempo, si no se usa se saturaría el sistema.
 
-**Observa cómo cambian los valores de xValue y yValue a medida que el micro:bit se inclina hacia la izquierda, derecha, adelante y atrás. ¿Qué valores toman xValue y yValue en cada caso?**
+**6. Observa cómo cambian los valores de xValue y yValue a medida que el micro:bit se inclina hacia la izquierda, derecha, adelante y atrás. ¿Qué valores toman xValue y yValue en cada caso?**
 
-**¿Qué valores toman aState y bState cuando presionas los botones A y B?**
 
-**Observa qué ocurre si en vez de is_pressed() usas was_pressed(). ¿Qué diferencias encuentras?**
+
+**7. ¿Qué valores toman aState y bState cuando presionas los botones A y B?**
+
+
+**8. Observa qué ocurre si en vez de is_pressed() usas was_pressed(). ¿Qué diferencias encuentras?**
+El is_pressed() es cuando se presiona y el was_pressed() es en el momento en el que se suelta.
+
+ **9. Si el micro:bit tiene los siguientes datos xValue: 969, yValue: 652, aState: True, bState: False ¿Qué bytes se enviarían por el puerto serial?**
+
+39 (6) 36 (9) 35 (6) 2c (la coma)
+
+  36  35 32 2C (la coma)
+  
+  54 (T) 72 (r) 75 (u) 65 (e) 2C (coma) 
+  
+  46 (F) 61 (a) 6C (l) 73 (s) 65 (e) 0a (carácter especial el de la n)
 
 ---
 ## Código
@@ -83,6 +101,7 @@ Código modificado:
 ## Video
 
 [Video demostratativo](URL)
+
 
 
 
