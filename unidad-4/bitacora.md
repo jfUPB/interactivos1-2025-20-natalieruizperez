@@ -95,6 +95,102 @@ Código a modificar:
 Código modificado:
 
 ``` js
+let tileCount = 20;
+let actRandomSeed = 0;
+let actStrokeCap;
+
+let port;
+let connectBtn;
+
+let microbitX = 0;
+let microbitY = 0;
+let buttonA = 0;
+let buttonB = 0;
+
+let lastBState = 0;
+let incomingData = '';  // Para acumular la línea recibida
+
+function setup() {
+  createCanvas(600, 600);
+  background(255);
+
+  actStrokeCap = ROUND;
+
+  port = createSerial();
+
+  connectBtn = createButton('Connect to micro:bit');
+  connectBtn.position(80, height + 20);
+  connectBtn.mousePressed(connectBtnClick);
+}
+
+function draw() {
+  clear();
+  strokeCap(actStrokeCap);
+  randomSeed(actRandomSeed);
+
+  let mappedX = map(microbitX, -1024, 1024, 0, width);
+  let mappedY = map(microbitY, -1024, 1024, 0, height);
+
+  for (let gridY = 0; gridY < tileCount; gridY++) {
+    for (let gridX = 0; gridX < tileCount; gridX++) {
+      let posX = (width / tileCount) * gridX;
+      let posY = (height / tileCount) * gridY;
+
+      let toggleState = int(random(0, 2));
+
+      if (toggleState === 0) {
+        strokeWeight(mappedX / 20);
+        line(posX, posY, posX + width / tileCount, posY + height / tileCount);
+      } else {
+        strokeWeight(mappedY / 20);
+        line(posX, posY + width / tileCount, posX + height / tileCount, posY);
+      }
+    }
+  }
+
+  // Leer datos seriales 
+  let data = port.readUntil('\n');
+  if (data) {
+    data = data.trim();
+    if (data.length > 0) {
+      let parts = data.split(",");
+      if (parts.length >= 4) {
+        microbitX = int(parts[0]);
+        microbitY = int(parts[1]);
+        buttonA = parts[2].trim().toLowerCase() === "true" ? 1 : 0;
+        buttonB = parts[3].trim().toLowerCase() === "true" ? 1 : 0;
+      }
+    }
+  }
+
+  // Cambiar la seed al apretar A, simula el click izquierdo del código original
+  if (buttonA === 1 && lastAState === 0) {
+    actRandomSeed = random(100000);  // Cambia la semilla para un nuevo patrón
+    strokeCap(actStrokeCap);
+  }
+  lastAState = buttonA;
+  
+  // Guardar imagen al apretar el boton B, simula lo que pasa al apretar la tecla s en el código original
+  if (buttonB === 1 && lastBState === 0) {
+    saveCanvas('screenshot', 'png');
+  }
+  lastBState = buttonB;
+
+  // Actualizar texto
+  if (!port.opened()) {
+    connectBtn.html('Connect to micro:bit');
+  } else {
+    connectBtn.html('Disconnect');
+  }
+}
+
+function connectBtnClick() {
+  if (!port.opened()) {
+    port.open('MicroPython', 115200);
+  } else {
+    port.close();
+  }
+}
 
 ```
 
@@ -196,6 +292,7 @@ function keyReleased() {
 ```
 
 Ahora que ya definí mi metodología crearé la conexión para el microbit, los botones y también eventos.
+
 
 
 
