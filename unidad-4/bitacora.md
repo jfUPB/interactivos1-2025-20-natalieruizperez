@@ -173,7 +173,7 @@ function keyReleased() {
 
 ```
 
-[Enlace a la aplicación modificada]([URL](https://editor.p5js.org/natalieruizperez/sketches/o28_TX1ex))
+[Enlace a la aplicación modificada](https://editor.p5js.org/natalieruizperez/sketches/o28_TX1ex)
 
 Código modificado:
 
@@ -287,6 +287,7 @@ function connectBtnClick() {
 ### Proceso código 
 
 Primero lo que hice fue analizar este código que es el de la página y leer en qué consistía. El mismo código explica en qué consite. Veo que cuano se mueve el mouse horizontalmente el grosor de las líneas diagonales izquierdas cambian. También que pasa lo mismo pero las líneas diagonales derechas al mover el mouse verticalmente. Veo que al hacer click izquierdo cambia la distribución de las líneas generándose una random entonces quiero que suceda lo mismo con el microbit al apretar un botón. Además si apreto la letra s tomo una screenshot. Teniendo en cuenta esto mi plan de trabajo va a ser que al mover el microbit de derecha a izquierda suceda lo mismo que en el código y al mover el microbit de arriba hacia abajo también pase lo mismo. Voy a hacer que al apretar B se tome una screenshot y que cada vez que aprete A se cambie la distribución de las líneas a una random.
+
 
 
 
