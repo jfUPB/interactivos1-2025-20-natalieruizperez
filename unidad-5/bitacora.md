@@ -1,4 +1,4 @@
-<img width="978" height="301" alt="image" src="https://github.com/user-attachments/assets/8ef98c0c-020e-4fcc-940b-398359635a51" />
+
 # Evidencias de la unidad 5
 
 ## Actividad 01
@@ -108,6 +108,17 @@ Total: 6 bytes por mensaje
 **Conclusión**
 
 Los primeros 4 bytes corresponden a dos números enteros con signo (xValue y yValue), que representan las lecturas del acelerómetro. Los últimos 2 bytes son valores sin signo (0 o 1) que indican el estado de los botones A y B (presionado o no).
+
+El mensaje binario se escribe como complemento a dos que es para convertirlo en un número negativo. Escribir el número positivo en binario, luego se invierten los bits y por último se le suma 1.
+
+Para el último experimento veo como funcionan uno al lado del otro pero más arriba ya se me había ocurrido hacerlo y respondí las preguntas.
+
+<img width="982" height="300" alt="image" src="https://github.com/user-attachments/assets/7435a429-5aab-4e5d-9bd4-cd592a9cf430" />
+
+### Actividad 03 
+
+En la unidad anterior teníamos que enviar información delimitada pero como el receptor ya sabe que cada paquete tiene 6 bytes, no necesita mirar comas o saltos de línea.
+
 
 
 
