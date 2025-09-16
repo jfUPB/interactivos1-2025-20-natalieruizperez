@@ -105,10 +105,9 @@ Cada B = 1 byte → 2 x 1 = 2 bytes
 
 Total: 6 bytes por mensaje
 
-Conclusión
-Los primeros 4 bytes son dos números enteros con signo (xValue, yValue). Mientras que los últimos 2 bytes son valores de botón (0 o 1) para decir si es verdadero o falso
+**Conclusión**
 
-Los números negativos se codifican en complemento a dos, lo que permite representar valores negativos en binario.
+Los primeros 4 bytes corresponden a dos números enteros con signo (xValue y yValue), que representan las lecturas del acelerómetro. Los últimos 2 bytes son valores sin signo (0 o 1) que indican el estado de los botones A y B (presionado o no).
 
 
 
