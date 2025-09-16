@@ -1,4 +1,4 @@
-
+<img width="978" height="301" alt="image" src="https://github.com/user-attachments/assets/8ef98c0c-020e-4fcc-940b-398359635a51" />
 # Evidencias de la unidad 5
 
 ## Actividad 01
@@ -11,7 +11,8 @@ Se comunican a través del uart y la librería de p5.js. Los datos que envía so
 
 **3. Muestra y explica la parte del código de p5.js donde lee los datos del micro:bit y los transforma en coordenadas de la pantalla.**
 
-```
+
+```js
   if (port.availableBytes() > 0) {
       let data = port.readUntil("\n");
       if (data) {
@@ -59,6 +60,36 @@ function connectBtnClick() {
 }
 ```
 En conclusión los números que ponga entre paréntesis en el uart.init son la velocidad en la que se van a mandar los bytes, por lo que en el p5js debo de poner la misma velocidad para que pueda recibir los datos correctamente.
+
+## Actividad 02
+
+Al editar el código de microbit y conectarlo al serial terminal obtengo este resultado. Eso eso es porque los datos se envían en formato binario como cadena de bytes a través del puerto serial.
+
+**Binario**
+
+<img width="1065" height="308" alt="image" src="https://github.com/user-attachments/assets/e7f447d3-c776-4fd4-9dfe-f076a1c8ced5" />
+
+Cuando se muestran en hex ya es posible identificar
+
+<img width="1028" height="240" alt="image" src="https://github.com/user-attachments/assets/e758442f-0d7e-4ae9-ae02-04942e880579" />
+
+**Experimento**
+
+Voy a quitar la línea de código que agregamos y pondré el data = "{},{},{},{}\n".format(xValue, yValue, aState,bState) para ver cómo se ve el texto y si varía.
+
+**ASCII**
+
+<img width="978" height="301" alt="image" src="https://github.com/user-attachments/assets/efeb5744-55cc-4bd5-adb8-42cabaf6d441" />
+
+
+<img width="1042" height="266" alt="image" src="https://github.com/user-attachments/assets/7d2532f5-d0de-41ff-87a2-c584b4f9e517" />
+
+Realizar este experimento me sirvió para comprender para qué sirve el struct.pack('>2h2B'...) que habíamos puesto al inicio de la actividad. A pesar de haber leído que hacía, el poder verlo en acción personalmente me sirve para tener más claros los conceptos. 
+
+
+
+
+
 
 
 
