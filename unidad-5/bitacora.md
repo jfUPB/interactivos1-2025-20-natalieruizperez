@@ -86,6 +86,29 @@ Voy a quitar la línea de código que agregamos y pondré el data = "{},{},{},{}
 
 Realizar este experimento me sirvió para comprender para qué sirve el struct.pack('>2h2B'...) que habíamos puesto al inicio de la actividad. A pesar de haber leído que hacía, el poder verlo en acción personalmente me sirve para tener más claros los conceptos. 
 
+**Conclusión**
+
+El '>2h2B' es una secuencia de bytes en formato binario y compacta, sirve para enviar datos entre dispositivos de forma rápida. En cambio, la línea data = "{},{},{},{}\n".format(xValue, yValue, aState, bState) genera una cadena de texto legible que muestra los valores separados por comas, lo cual es útil para ver fácilmente los datos.
+
+Voy a poner el código de shake para analizar qué sucede. Veo que cada que se mueve el microbit se generan 6 bits. 
+
+<img width="1028" height="297" alt="image" src="https://github.com/user-attachments/assets/7609ef31-2032-4e0f-be63-76a792fb1707" />
+
+Esta explicación me sirvió para comprender mejor por qué son 6 bits y que significa:
+
+2h: dos enteros de 16 bits con signo (xValue y yValue).
+2B : dos enteros de 8 bits sin signo (aState y bState).
+
+Tamaño total:
+Cada h = 2 bytes → 2 x 2 = 4 bytes
+Cada B = 1 byte → 2 x 1 = 2 bytes
+
+Total: 6 bytes por mensaje
+
+Conclusión
+Los primeros 4 bytes son dos números enteros con signo (xValue, yValue). Mientras que los últimos 2 bytes son valores de botón (0 o 1) para decir si es verdadero o falso
+
+Los números negativos se codifican en complemento a dos, lo que permite representar valores negativos en binario.
 
 
 
