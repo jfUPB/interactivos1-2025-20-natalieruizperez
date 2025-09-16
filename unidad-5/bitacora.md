@@ -59,7 +59,12 @@ function connectBtnClick() {
   }
 }
 ```
-En conclusión los números que ponga entre paréntesis en el uart.init son la velocidad en la que se van a mandar los bytes, por lo que en el p5js debo de poner la misma velocidad para que pueda recibir los datos correctamente.
+
+**Conclusión**
+
+Los números que ponga entre paréntesis en el uart.init son la velocidad en la que se van a mandar los bytes, por lo que en el p5js debo de poner la misma velocidad para que pueda recibir los datos correctamente.
+
+---
 
 ## Actividad 02
 
@@ -90,6 +95,8 @@ Realizar este experimento me sirvió para comprender para qué sirve el struct.p
 
 El '>2h2B' es una secuencia de bytes en formato binario y compacta, sirve para enviar datos entre dispositivos de forma rápida. En cambio, la línea data = "{},{},{},{}\n".format(xValue, yValue, aState, bState) genera una cadena de texto legible que muestra los valores separados por comas, lo cual es útil para ver fácilmente los datos.
 
+---
+
 Voy a poner el código de shake para analizar qué sucede. Veo que cada que se mueve el microbit se generan 6 bits. 
 
 <img width="1028" height="297" alt="image" src="https://github.com/user-attachments/assets/7609ef31-2032-4e0f-be63-76a792fb1707" />
@@ -115,6 +122,7 @@ Para el último experimento veo como funcionan uno al lado del otro pero más ar
 
 <img width="982" height="300" alt="image" src="https://github.com/user-attachments/assets/7435a429-5aab-4e5d-9bd4-cd592a9cf430" />
 
+---
 ### Actividad 03 
 
 En la unidad anterior teníamos que enviar información delimitada pero como el receptor ya sabe que cada paquete tiene 6 bytes, no necesita mirar comas o saltos de línea.
@@ -173,6 +181,122 @@ if (port.availableBytes() >= 6) {
 
 El código anterior trabaja con datos en formato texto que se envían como cadenas separadas por comas y terminadas con un salto de línea. En cambio, el código actual trabaja con datos binarios de 6 bytes. Por eso, el programa lee exactamente esos 6 bytes y extrae los valores directamente, lo que hace la comunicación más rápida y menos propensa a errores.
 
+Al ejecutar el código muchas veces en la consola aparece un error. Este error se produce porque no hay una forma de saber dónde empieza cada paquete de datos. Como los datos llegan de forma continua y no tienen delimitadores, p5.js puede comenzar a leer desde cualquier byte, incluso desde la mitad de un paquete.
+
+Esto me sirvió para entenderlo: Porque el receptor (p5.js) lee 6 bytes sin verificar si están alineados correctamente. Si los datos llegan desfasados, puede comenzar a leer desde la mitad de un paquete anterior.
+
+Ejemplo:
+
+  Micro:bit envía: [01 f4 02 0c 01 00][01 f4 02 0c 01 00]
+  
+  Pero p5.js lee desde el segundo byte: f4 02 0c 01 00 01
+  
+  Resultado: datos incorrectos.
+
+Se usa el framing para evitar este tipo de errores, se le adicionó al código el framing para que funcione correctamente, en esta parte del código veo conceptos con los que no estoy familiarizada. 
+
+
+```js
+let serialBuffer = []; // Se agregó para acumular bytes
+
+function readSerialData() {
+  let available = port.availableBytes();
+  if (available > 0) {
+    let newData = port.readBytes(available);
+    serialBuffer = serialBuffer.concat(newData);
+  }
+
+  while (serialBuffer.length >= 8) {
+    if (serialBuffer[0] !== 0xaa) {
+      serialBuffer.shift(); // Buscar el header
+      continue;
+    }
+
+    if (serialBuffer.length < 8) break;
+
+    let packet = serialBuffer.slice(0, 8);
+    serialBuffer.splice(0, 8); // Remueve el paquete del buffer
+
+    let dataBytes = packet.slice(1, 7);
+    let receivedChecksum = packet[7];
+    let computedChecksum = dataBytes.reduce((acc, val) => acc + val, 0) % 256;
+
+    if (computedChecksum !== receivedChecksum) {
+      console.log("Checksum error in packet");
+      continue;
+    }
+
+    // Extraer datos
+    let buffer = new Uint8Array(dataBytes).buffer;
+    let view = new DataView(buffer);
+    microBitX = view.getInt16(0);
+    microBitY = view.getInt16(2);
+    microBitAState = view.getUint8(4) === 1;
+    microBitBState = view.getUint8(5) === 1;
+
+    updateButtonStates(microBitAState, microBitBState);
+
+    console.log(
+      `microBitX: ${microBitX} microBitY: ${microBitY} microBitAState: ${microBitAState} microBitBState: ${microBitBState}`
+    );
+  }
+}
+```
+---
+
+**Tengo nuevas preguntas:**
+
+**1. ¿Qué hace el serialbuffer y por qué ya no se port.readBytes?**
+
+serialBuffer es un arreglo que acumula los bytes recibidos del puerto serial así que en vez de leer solo si hay exactamente los bytes como antes port.readBytes, se lee todo lo disponible y se guarda en un buffer, que se analiza con cuidado.
+
+**2. ¿Cuál es la diferencia entre serialBuffer.slice y serialBuffer.splice? veo que tienen nombres similares.**
+
+slice copia parte del arreglo; splice la elimina. Ambas se usan juntas para leer y limpiar el buffer. Esto me sirvió para entenderlo mejor: slice(0, 8) → Toma los primeros 8 bytes (sin quitarlos aún). splice(0, 8) → Elimina esos 8 bytes del serialBuffer. (porque ya se procesaron).
+
+**3. ¿Qué es checksum y cómo funciona?**
+
+Es un valor numérico que se calcula a partir de un conjunto de datos. Su propósito es detectar errores de transmisión. Es fundamental porque se usa para verificar que los datos recibidos son los mismos que los enviados, sin alteraciones. El emisor genera un paquete de datos, después calcula la suma de los bytes y se saca el residuo de 256 para que quepa en un byte. Ese checksum lo envía junto con el paquete y p5.js recibe el paquete, calcula su propio checksum de los datos y lo compara con el checksum recibido.
+
+Partes del código donde aparece:
+
+**Microbit**
+
+```py
+# Se guardan datos
+data = struct.pack('>2h2B', xValue, yValue, int(aState), int(bState))
+
+checksum = sum(data) % 256
+
+# Se construye el paquete
+packet = b'\xAA' + data + bytes([checksum])
+
+# Envia el paquete
+uart.write(packet)
+```
+
+**P5.js**
+
+```js
+let dataBytes = packet.slice(1, 7); // bytes 1 a 6 del paquete
+let receivedChecksum = packet[7];   // Último byte
+
+// Se calcula checksum
+let computedChecksum = dataBytes.reduce((acc, val) => acc + val, 0) % 256;
+
+// Comparación
+if (computedChecksum !== receivedChecksum) {
+  console.log("Checksum error in packet");
+  continue; // paquete con error, no lo usamos
+}
+```
+
+**Conclusión de las preguntas**
+El serial buffer es un espacio temporal donde se almacenan los datos que llegan por la comunicación serial antes de ser procesados y El checksum es un número que se calcula sumando los datos que queremos enviar para asegurarnos de que no se hayan cambiado o dañado durante el envío. Cuando enviamos información, también mandamos ese número. La persona que recibe la información calcula el número otra vez y lo compara con el que recibió. Si los dos números son iguales, significa que la información llegó bien si no, quiere decir que hubo un error y hay que enviarla de nuevo.
+
+---
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+Al comparar el código final y el anterior se puede ver que los dos programas hacen casi lo mismo, pero el primer programa muestra en la consola los datos que llegan (como la posición y botones), mientras que el segundo no lo hace.  El segundo programa centra mejor el dibujo en la pantalla al mover las coordenadas del micro:bit al medio. Además,  Esto hace que el primero sea más útil para ver si todo está funcionando bien, y el segundo sea más limpio para solo dibujar.
 
 
 
