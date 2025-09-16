@@ -119,8 +119,59 @@ Para el último experimento veo como funcionan uno al lado del otro pero más ar
 
 En la unidad anterior teníamos que enviar información delimitada pero como el receptor ya sabe que cada paquete tiene 6 bytes, no necesita mirar comas o saltos de línea.
 
+<img width="1568" height="729" alt="image" src="https://github.com/user-attachments/assets/ba47bdbf-1a19-4af7-8e67-e30a129789f4" />
+
+**Código**
+
+```js
+if (port.availableBytes() >= 6) {
+    let data = port.readBytes(6);
+    if (data) {
+    const buffer = new Uint8Array(data).buffer;
+    const view = new DataView(buffer);
+    microBitX = view.getInt16(0);
+    microBitY = view.getInt16(2);
+    microBitAState = view.getUint8(4) === 1;
+    microBitBState = view.getUint8(5) === 1;
+    updateButtonStates(microBitAState, microBitBState);
+
+    print(`microBitX: ${microBitX} microBitY: ${microBitY} microBitAState: ${microBitAState} microBitBState: ${microBitBState} \n` );
+
+    /*
+    microBitX = int(values[0]) + windowWidth / 2;
+    microBitY = int(values[1]) + windowHeight / 2;
+    microBitAState = values[2].toLowerCase() === "true";
+    microBitBState = values[3].toLowerCase() === "true";
+    updateButtonStates(microBitAState, microBitBState);
+    */
+
+    }
+}
 
 
+```
+
+**Código anterior**
+
+```js
+  if (port.availableBytes() > 0) {
+      let data = port.readUntil("\n");
+      if (data) {
+        data = data.trim();
+        let values = data.split(",");
+        if (values.length == 4) {
+          microBitX = int(values[0]) + windowWidth / 2;
+          microBitY = int(values[1]) + windowHeight / 2;
+          microBitAState = values[2].toLowerCase() === "true";
+          microBitBState = values[3].toLowerCase() === "true";
+          updateButtonStates(microBitAState, microBitBState);
+        } else {
+          print("No se están recibiendo 4 datos del micro:bit");
+        }
+
+```
+
+El código anterior trabaja con datos en formato texto que se envían como cadenas separadas por comas y terminadas con un salto de línea. En cambio, el código actual trabaja con datos binarios de 6 bytes. Por eso, el programa lee exactamente esos 6 bytes y extrae los valores directamente, lo que hace la comunicación más rápida y menos propensa a errores.
 
 
 
