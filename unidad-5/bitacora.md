@@ -299,6 +299,21 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 Al comparar el código final y el anterior se puede ver que los dos programas hacen casi lo mismo, pero el primer programa muestra en la consola los datos que llegan (como la posición y botones), mientras que el segundo no lo hace.  El segundo programa centra mejor el dibujo en la pantalla al mover las coordenadas del micro:bit al medio. Además,  Esto hace que el primero sea más útil para ver si todo está funcionando bien, y el segundo sea más limpio para solo dibujar.
 
 
+### Nota: 4.0
+
+- Profundidad de la Indagación: Indagué acerca de los temas que no tenía claros, me pregunté cómo funcionaba y para qué me podría servir.
+- Calidad de experimentación: No considero que haya sido muy creativa a la hora de experimentar, hice experimentos propuestos y otros que consistían en cambiar valores y entender qué sucedía. Me enfoque más en la investigación que en la experimentación.
+-  Análisis y Reflexión: Luego de responder las preguntas en las que profundicé, saque conclusiones para entenderlas mejor.
+- Apropiación y Articulación de Conceptos: 
+
+Pendiente: 
+La bitácora demuestra una maestría conceptual. Se explican los conceptos como un sistema interdependiente. Se articula con total claridad y usando analogías propias por qué la comunicación serial es un flujo de bytes asíncrono y cómo un protocolo impone orden sobre ese “caos” para garantizar una comunicación fiable y eficiente.
+
+Se diseñan y ejecutan experimentos deliberados y efectivos para verificar hipótesis o el funcionamiento de componentes específicos (ej. enviar valores conocidos para validar la lectura, provocar un error de checksum para verificar su manejo).
+
+Se formulan preguntas que exploran el diseño y sus implicaciones (ej. “¿Qué otras estrategias de framing existen y cuáles son sus ventajas?” o “¿En qué escenarios un protocolo ASCII podría ser preferible a uno binario, a pesar de su ineficiencia?”). La indagación demuestra una curiosidad por los principios de la comunicación de datos.
+
+La bitácora conecta claramente la evidencia (capturas de la terminal, logs de la consola, depurador) con la explicación teórica. Se analiza por qué un protocolo sin framing es frágil y cómo la combinación de header y checksum aporta robustez. Se analizan los errores como parte del aprendizaje.
 
 
 
