@@ -41,12 +41,14 @@ Cuando los valores de aState o bState cambian a "true", el código de p5.js gene
 
 <img width="830" height="731" alt="image" src="https://github.com/user-attachments/assets/9a94f58a-ca2b-4cd8-8362-473c8f95a36d" />
 
+<a name="preg1"></a>
 ### Preguntas luego de responder la unidad
 
 **1. ¿Que hace exactamente uart.write? ¿Y uart.init? ¿Por qué se pone 115200? ¿Cuál de los uart es el que se comunica con el microbit y p5js? ¿Cómo funcionan?**
 
 uart.write envía los datos del microbit a el pc conviertiendo lo que se ponga entre paréntesis en bytes. uart.init configura uart.write para que funcione correctamente. Es como una forma de prepar uart para que funcione. El número que va entre paréntesis es la velocidad de transmisión, es decir cuántos bytes se envían y tiene que coincidir entre el receptor y el emisor pero **¿cómo se cuál velocidad poner?** Según mi consulta parece que las velocidades más comunes de transmisión son 9600 y 115200 que es el que usamos en clase. 9600 es más lenta pero confiable mientras que 115200 rápida y se usa para proyectos avanzados. Voy a poner la velocidad de 9600 a ver si funciona el código.
 
+<a name="exp1"></a>
 ### Experimento velocidades
 
 <img width="890" height="441" alt="image" src="https://github.com/user-attachments/assets/80b052a8-96a8-43c4-bbee-f404f5e22e08" />
@@ -64,7 +66,8 @@ function connectBtnClick() {
 }
 ```
 
-### **Conclusión y descubrimientos actividad 01**
+<a name="con1"></a>
+### Conclusión y descubrimientos
 
 Los números que pongo entre paréntesis en uart.init representan la velocidad de transmisión de los bytes. Es fundamental que tanto el emisor como el receptor utilicen la misma velocidad para asegurar la correcta recepción de los datos. En p5.js, hay que especificar la misma velocidad para que la conexión funcione correctamente.
 
@@ -82,6 +85,7 @@ Cuando se muestran en hex ya es posible identificar valores.
 
 <img width="1028" height="240" alt="image" src="https://github.com/user-attachments/assets/e758442f-0d7e-4ae9-ae02-04942e880579" />
 
+<a name="exp2"></a>
 ### Experimento análisis caracteres
 
 Voy a quitar la línea de código que agregamos y pondré el data = "{},{},{},{}\n".format(xValue, yValue, aState,bState) para ver cómo se ve el texto y si varía.
@@ -95,12 +99,14 @@ Voy a quitar la línea de código que agregamos y pondré el data = "{},{},{},{}
 
 Realizar este experimento me sirvió para comprender para qué sirve el struct.pack('>2h2B'...) que habíamos puesto al inicio de la actividad. A pesar de haber leído que hacía, el poder verlo en acción personalmente me sirve para tener más claros los conceptos. 
 
+<a name="con2"></a>
 **Conclusión**
 
 La diferencia entre el formato binario y el formato ASCII es que el binario es mucho más compacto y eficiente para la transmisión de datos, mientras que el formato ASCII es legible y útil para depuración, pero menos eficiente. El struct.pack('>2h2B') convierte los valores en un formato binario compacto, mientras que la cadena de texto "{},{},{},{}\n".format(xValue, yValue, aState, bState) genera una cadena que es fácil de leer pero ocupa más espacio y es más lenta de procesar.
 
 ---
 
+<a name="exp22"></a>
 ### Experimento shake
 
 Voy a poner el código de shake para analizar qué sucede. Veo que cada que se mueve el microbit se generan 6 bits. 
@@ -118,6 +124,7 @@ Cada B = 1 byte → 2 x 1 = 2 bytes
 
 Total: 6 bytes por mensaje
 
+<a name="con22"></a>
 **Conclusión**
 El uso de 6 bytes por paquete de datos permite una transmisión más eficiente y rápida que utilizar cadenas de texto. Además, la conversión a binario con formato struct.pack asegura que los datos ocupen menos espacio y se transmitan más rápidamente.
 
@@ -249,6 +256,7 @@ function readSerialData() {
 ```
 ---
 
+<a name="preg3"></a>
 ### Preguntas código
 
 **1. ¿Qué hace el serialbuffer y por qué ya no se port.readBytes?**
@@ -299,26 +307,30 @@ if (computedChecksum !== receivedChecksum) {
 }
 ```
 
+<a name="con3"></a>
 ### Conclusión de las preguntas
 El serial buffer es un espacio temporal donde se almacenan los datos que llegan por la comunicación serial antes de ser procesados y El checksum es un número que se calcula sumando los datos que queremos enviar para asegurarnos de que no se hayan cambiado o dañado durante el envío. Cuando enviamos información, también mandamos ese número. La persona que recibe la información calcula el número otra vez y lo compara con el que recibió. Si los dos números son iguales, significa que la información llegó bien si no, quiere decir que hubo un error y hay que enviarla de nuevo. El framing y el checksum no solo solucionan errores de transmisión, sino que me ayudaron a comprender mejor cómo fluye la información. Este conocimiento me permite diseñar soluciones más robustas y pensar en la comunicación de datos como un sistema interdependiente donde cada uno de ellos debe colaborar para que todo funcione sin errores.
+
+### Conclusiones finales de la unidad 5
+
+En esta unidad aprendí cómo se comunican los dispositivos como el micro:bit con otros programas como p5.js usando comunicación serial. Al principio usábamos texto con comas y saltos de línea (ASCII), lo cual era más fácil de leer pero menos eficiente. Después pasamos al formato binario, que es más compacto y rápido, pero también más complejo de manejar. Esto me ayudó a ver que, dependiendo del proyecto, hay que elegir el formato que mejor se adapte a la situación.
+
+También aprendí sobre los problemas que pueden pasar cuando los datos se envían sin control, como los errores de sincronización. Para resolver eso usamos técnicas de framing, como agregar un byte de inicio y un checksum al final. Esto me pareció muy interesante porque muestra que enviar datos no es solo mandarlos, sino también asegurarse de que lleguen bien y en orden.
+
 
 ---
 
 ### Nota: 4.0
 
-- Profundidad de la Indagación: Indagué acerca de los temas que no tenía claros, me pregunté cómo funcionaba y para qué me podría servir.
-- Calidad de experimentación: No considero que haya sido muy creativa a la hora de experimentar, hice experimentos propuestos y otros que consistían en cambiar valores y entender qué sucedía. Me enfoque más en la investigación que en la experimentación.
--  Análisis y Reflexión: Luego de responder las preguntas en las que profundicé, saque conclusiones para entenderlas mejor.
+- Profundidad de la Indagación (5.0): Indagué acerca de los temas que no tenía claros, me pregunté cómo funcionaba y para qué me podría servir. [Preguntas Actividad 01](#preg1) y [Preguntas Actividad 03](#preg3), en la 2 también me hice preguntas que respondía a medida que surgían en el proceso.
+  
+- Calidad de experimentación (3.0): No considero que haya sido muy creativa a la hora de experimentar, hice experimentos propuestos y otros que consistían en cambiar valores y entender qué sucedía. Me enfoque más en la investigación que en la experimentación, estos son los experimentos [Experimento Actividad 01](#exp1),[Experimento Actividad 02](#exp2), [Experimento Actividad 02](#exp22), [Experimento Actividad 03](#exp3)
+  
+-  Análisis y Reflexión: Luego de responder las preguntas en las que profundicé, saque conclusiones para entenderlas mejor. [Conclusiones Actividad 01](#con1) [Conclusiones Actividad 02](#con2) y [Otra Conclusión Actividad 02](#con22), finalmente [Conclusiones Actividad 03](#con3)
+  
 - Apropiación y Articulación de Conceptos: 
 
-Pendiente: 
-La bitácora demuestra una maestría conceptual. Se explican los conceptos como un sistema interdependiente. Se articula con total claridad y usando analogías propias por qué la comunicación serial es un flujo de bytes asíncrono y cómo un protocolo impone orden sobre ese “caos” para garantizar una comunicación fiable y eficiente.
 
-Se diseñan y ejecutan experimentos deliberados y efectivos para verificar hipótesis o el funcionamiento de componentes específicos (ej. enviar valores conocidos para validar la lectura, provocar un error de checksum para verificar su manejo).
-
-Se formulan preguntas que exploran el diseño y sus implicaciones (ej. “¿Qué otras estrategias de framing existen y cuáles son sus ventajas?” o “¿En qué escenarios un protocolo ASCII podría ser preferible a uno binario, a pesar de su ineficiencia?”). La indagación demuestra una curiosidad por los principios de la comunicación de datos.
-
-La bitácora conecta claramente la evidencia (capturas de la terminal, logs de la consola, depurador) con la explicación teórica. Se analiza por qué un protocolo sin framing es frágil y cómo la combinación de header y checksum aporta robustez. Se analizan los errores como parte del aprendizaje.
 
 
 
