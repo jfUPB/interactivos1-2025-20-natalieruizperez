@@ -9,8 +9,9 @@ Se comunican a través del uart y la librería de p5.js. Los datos que envía so
 
 **2. ¿Cómo es la estructura del protocolo ASCII usado?**
 
-**3. Muestra y explica la parte del código de p5.js donde lee los datos del micro:bit y los transforma en coordenadas de la pantalla.**
+El protocolo ASCII utilizado consiste en una cadena de caracteres en texto, donde cada valor se separa por comas. El mensaje se termina con un salto de línea ("\n") que actúa como delimitador. Este formato lo podemos leer pero es menos eficiente en cuanto a velocidad.
 
+**3. Muestra y explica la parte del código de p5.js donde lee los datos del micro:bit y los transforma en coordenadas de la pantalla.**
 
 ```js
   if (port.availableBytes() > 0) {
@@ -31,6 +32,7 @@ Se comunican a través del uart y la librería de p5.js. Los datos que envía so
 
 **4. ¿Cómo se generan los eventos A pressed y B released que se generan en p5.js a partir de los datos que envía el micro:bit?**
 
+Cuando los valores de aState o bState cambian a "true", el código de p5.js genera eventos presionado y cuando cambian a "false", genera eventos de cuando se suelta el botón.
 
 **5. Capturas de pantalla de los algunos dibujos que hayas hecho con el sketch.**
 <img width="834" height="737" alt="image" src="https://github.com/user-attachments/assets/51a2da87-e3db-4a01-bc89-4b8e5edc3258" />
@@ -43,7 +45,9 @@ Se comunican a través del uart y la librería de p5.js. Los datos que envía so
 
 **1. ¿Que hace exactamente uart.write? ¿Y uart.init? ¿Por qué se pone 115200? ¿Cuál de los uart es el que se comunica con el microbit y p5js? ¿Cómo funcionan?**
 
-uart.write envía los datos del microbit a el pc conviertiendo lo que se ponga entre paréntesis en bytes. uart.init configura uart.write para que funcione correctamente. Es como una forma de prepar uart para que funcione. El número que va entre paréntesis es la velocidad de transmisión, es decir cuántos bytes se envían y tiene que coincidir entre el receptor y el emisor pero **¿cómo se cuál velocidad poner?** Según mi consulta parece que las más comunes de usar son 9600 y 115200 que es el que usamos en clase. 9600 es más lenta pero confiable mientras que 115200 rápida y se usa para proyectos avanzados. Voy a poner la velocidad de 9600 a ver si funciona el código.
+uart.write envía los datos del microbit a el pc conviertiendo lo que se ponga entre paréntesis en bytes. uart.init configura uart.write para que funcione correctamente. Es como una forma de prepar uart para que funcione. El número que va entre paréntesis es la velocidad de transmisión, es decir cuántos bytes se envían y tiene que coincidir entre el receptor y el emisor pero **¿cómo se cuál velocidad poner?** Según mi consulta parece que las velocidades más comunes de transmisión son 9600 y 115200 que es el que usamos en clase. 9600 es más lenta pero confiable mientras que 115200 rápida y se usa para proyectos avanzados. Voy a poner la velocidad de 9600 a ver si funciona el código.
+
+### Experimento velocidades
 
 <img width="890" height="441" alt="image" src="https://github.com/user-attachments/assets/80b052a8-96a8-43c4-bbee-f404f5e22e08" />
 
@@ -60,25 +64,25 @@ function connectBtnClick() {
 }
 ```
 
-**Conclusión**
+### **Conclusión y descubrimientos actividad 01**
 
-Los números que ponga entre paréntesis en el uart.init son la velocidad en la que se van a mandar los bytes, por lo que en el p5js debo de poner la misma velocidad para que pueda recibir los datos correctamente.
+Los números que pongo entre paréntesis en uart.init representan la velocidad de transmisión de los bytes. Es fundamental que tanto el emisor como el receptor utilicen la misma velocidad para asegurar la correcta recepción de los datos. En p5.js, hay que especificar la misma velocidad para que la conexión funcione correctamente.
 
 ---
 
 ## Actividad 02
 
-Al editar el código de microbit y conectarlo al serial terminal obtengo este resultado. Eso eso es porque los datos se envían en formato binario como cadena de bytes a través del puerto serial.
+Al editar el código de microbit y conectarlo al serial terminal obtengo este resultado. Eso eso es porque los datos se envían en formato binario como cadena de bytes a través del puerto serial. 
 
 **Binario**
 
 <img width="1065" height="308" alt="image" src="https://github.com/user-attachments/assets/e7f447d3-c776-4fd4-9dfe-f076a1c8ced5" />
 
-Cuando se muestran en hex ya es posible identificar
+Cuando se muestran en hex ya es posible identificar valores.
 
 <img width="1028" height="240" alt="image" src="https://github.com/user-attachments/assets/e758442f-0d7e-4ae9-ae02-04942e880579" />
 
-**Experimento**
+### Experimento análisis caracteres
 
 Voy a quitar la línea de código que agregamos y pondré el data = "{},{},{},{}\n".format(xValue, yValue, aState,bState) para ver cómo se ve el texto y si varía.
 
@@ -93,9 +97,11 @@ Realizar este experimento me sirvió para comprender para qué sirve el struct.p
 
 **Conclusión**
 
-El '>2h2B' es una secuencia de bytes en formato binario y compacta, sirve para enviar datos entre dispositivos de forma rápida. En cambio, la línea data = "{},{},{},{}\n".format(xValue, yValue, aState, bState) genera una cadena de texto legible que muestra los valores separados por comas, lo cual es útil para ver fácilmente los datos.
+La diferencia entre el formato binario y el formato ASCII es que el binario es mucho más compacto y eficiente para la transmisión de datos, mientras que el formato ASCII es legible y útil para depuración, pero menos eficiente. El struct.pack('>2h2B') convierte los valores en un formato binario compacto, mientras que la cadena de texto "{},{},{},{}\n".format(xValue, yValue, aState, bState) genera una cadena que es fácil de leer pero ocupa más espacio y es más lenta de procesar.
 
 ---
+
+### Experimento shake
 
 Voy a poner el código de shake para analizar qué sucede. Veo que cada que se mueve el microbit se generan 6 bits. 
 
@@ -113,12 +119,11 @@ Cada B = 1 byte → 2 x 1 = 2 bytes
 Total: 6 bytes por mensaje
 
 **Conclusión**
+El uso de 6 bytes por paquete de datos permite una transmisión más eficiente y rápida que utilizar cadenas de texto. Además, la conversión a binario con formato struct.pack asegura que los datos ocupen menos espacio y se transmitan más rápidamente.
 
 Los primeros 4 bytes corresponden a dos números enteros con signo (xValue y yValue), que representan las lecturas del acelerómetro. Los últimos 2 bytes son valores sin signo (0 o 1) que indican el estado de los botones A y B (presionado o no).
 
-El mensaje binario se escribe como complemento a dos que es para convertirlo en un número negativo. Escribir el número positivo en binario, luego se invierten los bits y por último se le suma 1.
-
-Para el último experimento veo como funcionan uno al lado del otro pero más arriba ya se me había ocurrido hacerlo y respondí las preguntas.
+Para el último experimento veo como funcionan uno al lado del otro pero más arriba en la bitácora ya se me había ocurrido hacerlo y respondí las preguntas.
 
 <img width="982" height="300" alt="image" src="https://github.com/user-attachments/assets/7435a429-5aab-4e5d-9bd4-cd592a9cf430" />
 
@@ -193,7 +198,7 @@ Ejemplo:
   
   Resultado: datos incorrectos.
 
-Se usa el framing para evitar este tipo de errores, se le adicionó al código el framing para que funcione correctamente, en esta parte del código veo conceptos con los que no estoy familiarizada. 
+Se usa el framing para evitar este tipo de errores, se le adicionó al código el framing para que funcione correctamente, eso significa que cada paquete se marca con un byte de inicio (header) pero en esta parte del código veo conceptos con los que no estoy familiarizada. 
 
 
 ```js
@@ -244,7 +249,7 @@ function readSerialData() {
 ```
 ---
 
-**Tengo nuevas preguntas:**
+### Preguntas código
 
 **1. ¿Qué hace el serialbuffer y por qué ya no se port.readBytes?**
 
@@ -258,6 +263,9 @@ slice copia parte del arreglo; splice la elimina. Ambas se usan juntas para leer
 
 Es un valor numérico que se calcula a partir de un conjunto de datos. Su propósito es detectar errores de transmisión. Es fundamental porque se usa para verificar que los datos recibidos son los mismos que los enviados, sin alteraciones. El emisor genera un paquete de datos, después calcula la suma de los bytes y se saca el residuo de 256 para que quepa en un byte. Ese checksum lo envía junto con el paquete y p5.js recibe el paquete, calcula su propio checksum de los datos y lo compara con el checksum recibido.
 
+**4. ¿Cuándo podría ser mejor usar texto (ASCII) en vez de binario?**
+
+Aunque el protocolo binario es más rápido y eficiente, el formato ASCII puede ser mejor en algunos casos como si quieroe entender fácilmente lo que se está enviando. Como los datos se ven como texto, es mucho más fácil leerlos en la consola y detectar errores. 
 Partes del código donde aparece:
 
 **Microbit**
@@ -291,13 +299,10 @@ if (computedChecksum !== receivedChecksum) {
 }
 ```
 
-**Conclusión de las preguntas**
-El serial buffer es un espacio temporal donde se almacenan los datos que llegan por la comunicación serial antes de ser procesados y El checksum es un número que se calcula sumando los datos que queremos enviar para asegurarnos de que no se hayan cambiado o dañado durante el envío. Cuando enviamos información, también mandamos ese número. La persona que recibe la información calcula el número otra vez y lo compara con el que recibió. Si los dos números son iguales, significa que la información llegó bien si no, quiere decir que hubo un error y hay que enviarla de nuevo.
+### Conclusión de las preguntas
+El serial buffer es un espacio temporal donde se almacenan los datos que llegan por la comunicación serial antes de ser procesados y El checksum es un número que se calcula sumando los datos que queremos enviar para asegurarnos de que no se hayan cambiado o dañado durante el envío. Cuando enviamos información, también mandamos ese número. La persona que recibe la información calcula el número otra vez y lo compara con el que recibió. Si los dos números son iguales, significa que la información llegó bien si no, quiere decir que hubo un error y hay que enviarla de nuevo. El framing y el checksum no solo solucionan errores de transmisión, sino que me ayudaron a comprender mejor cómo fluye la información. Este conocimiento me permite diseñar soluciones más robustas y pensar en la comunicación de datos como un sistema interdependiente donde cada uno de ellos debe colaborar para que todo funcione sin errores.
 
 ---
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-Al comparar el código final y el anterior se puede ver que los dos programas hacen casi lo mismo, pero el primer programa muestra en la consola los datos que llegan (como la posición y botones), mientras que el segundo no lo hace.  El segundo programa centra mejor el dibujo en la pantalla al mover las coordenadas del micro:bit al medio. Además,  Esto hace que el primero sea más útil para ver si todo está funcionando bien, y el segundo sea más limpio para solo dibujar.
-
 
 ### Nota: 4.0
 
@@ -314,6 +319,7 @@ Se diseñan y ejecutan experimentos deliberados y efectivos para verificar hipó
 Se formulan preguntas que exploran el diseño y sus implicaciones (ej. “¿Qué otras estrategias de framing existen y cuáles son sus ventajas?” o “¿En qué escenarios un protocolo ASCII podría ser preferible a uno binario, a pesar de su ineficiencia?”). La indagación demuestra una curiosidad por los principios de la comunicación de datos.
 
 La bitácora conecta claramente la evidencia (capturas de la terminal, logs de la consola, depurador) con la explicación teórica. Se analiza por qué un protocolo sin framing es frágil y cómo la combinación de header y checksum aporta robustez. Se analizan los errores como parte del aprendizaje.
+
 
 
 
