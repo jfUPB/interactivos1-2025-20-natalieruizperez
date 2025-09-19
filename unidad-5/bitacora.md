@@ -320,15 +320,15 @@ También aprendí sobre los problemas que pueden pasar cuando los datos se enví
 
 ---
 
-### Nota: 4.5
+### Nota: 4.375
 
 - Profundidad de la Indagación (5.0): Indagué acerca de los temas que no tenía claros, me pregunté cómo funcionaba y para qué me podría servir. [Preguntas Actividad 01](#preg1) y [Preguntas Actividad 03](#preg3), en la 2 también me hice preguntas que respondía a medida que surgían en el proceso.
   
-- Calidad de experimentación (3.5): No considero que haya sido muy creativa a la hora de experimentar, hice experimentos propuestos y otros que consistían en cambiar valores y entender qué sucedía. Me enfoque más en la investigación que en la experimentación, estos son los experimentos [Experimento Actividad 01](#exp1),[Experimento Caracteres Actividad 02](#exp2), [Experimento Shake Actividad 02](#exp22), [Experimento Actividad 03](#exp3)
+- Calidad de experimentación (4.0): No considero que haya sido muy creativa a la hora de experimentar, hice experimentos propuestos y otros que consistían en cambiar valores y entender qué sucedía. Me enfoque más en la investigación que en la experimentación, estos son los experimentos [Experimento Actividad 01](#exp1),[Experimento Caracteres Actividad 02](#exp2), [Experimento Shake Actividad 02](#exp22), [Experimento Actividad 03](#exp3)
   
--  Análisis y Reflexión(5.0): Luego de responder las preguntas en las que profundicé, saque conclusiones para entenderlas mejor. [Conclusiones Actividad 01](#con1) [Conclusiones Actividad 02](#con2) y [Otra Conclusión Actividad 02](#con22), finalmente [Conclusiones Actividad 03](#con3)
+-  Análisis y Reflexión (5.0): Luego de responder las preguntas en las que profundicé, saque conclusiones para entenderlas mejor. [Conclusiones Actividad 01](#con1) [Conclusiones Actividad 02](#con2) y [Otra Conclusión Actividad 02](#con22), finalmente [Conclusiones Actividad 03](#con3)
   
-- Apropiación y Articulación de Conceptos (4.5): A medida que resolvía las actividades me di cuenta de que todos los conceptos están conectados. Expliqué los conceptos con mis propias palabras e hice una investigación profunda como se puede ver a lo largo de la bitacora. Considero que me faltó relacionarlos más con situaciones de la vida cotidiana, pero aun así logré entender cómo funcionan juntos y por qué son importantes para que la comunicación funcione correctamente.
+- Apropiación y Articulación de Conceptos (3.5): A medida que resolvía las actividades me di cuenta de que todos los conceptos están conectados. Expliqué los conceptos pero considero que me faltó explicar más conceptos como los mencionados en el ejemplo. También considero que me faltó relacionarlos más con situaciones de la vida cotidiana, pero aun así logré entender cómo funcionan.
 
 
 
