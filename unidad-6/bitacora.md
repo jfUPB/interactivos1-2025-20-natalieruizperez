@@ -40,15 +40,26 @@ Las coordenadas de x son de la esquina superior izquierda
 
 **1. Piensa en cómo te conectas a Internet en casa o en la Universidad. ¿Usas Wi-Fi? ¿Un cable de red? Eso es simplemente tu “rampa de acceso” a la gran red de carreteras. ¿Qué pasaría si esa rampa se corta? Anota tus ideas.**
 
-
+En mi casa uso wifi, si esa rampa se corta entonces ya no sería posible que haya una conexión entre el computador y otros computadores. Esta conexión es la ue permite que al enviar un mensaje a otra persona en otra parte del mundo le pueda llegar a pesar de estar conectados en redes diferentes.
 
 **2. ¿Puedes identificar otros ejemplos de relaciones Cliente-Servidor en tu vida diaria (no necesariamente digitales)? Por ejemplo, al pedir comida en un restaurante. ¿Quién es el cliente y quién el servidor? ¿Qué se pide y qué se entrega?**
 
-**3. ¿Puedes identificar otros ejemplos de relaciones Cliente-Servidor en tu vida diaria (no necesariamente digitales)? Por ejemplo, al pedir comida en un restaurante. ¿Quién es el cliente y quién el servidor? ¿Qué se pide y qué se entrega?**
+Al pedir comida en un restaurante el cliente es la persona que va a pedir comida y el servidor es el restaurante porque es el que da comida, esta comida es la misma que pide el cliente y la que entrega el restaurante. Otra relación cliente sevidor es en las comisiones, un artista da su servicio que puede ser hacer un dibujo o un modelo 3d y el cliente lo recibe.
+
+
+**3. Toma la URL de tu sitio web favorito. Intenta identificar el protocolo, el nombre de dominio y la ruta (si la hay). ¿Qué crees que pasa si solo escribes el nombre de dominio (ej. www.google.com) sin una ruta específica? ¿Qué “página por defecto” crees que te envía el servidor?**
+
+Mi página favorita es https://www.friv.com/, creo que si no escribo la ruta específica de todas formas me lleva a la dirección correcta porque cuando me pongo a pensar nunca la escribo.
 
 **4. Compara HTTP con los protocolos seriales que usaste. ¿Qué similitudes encuentras? ¿Qué diferencias clave ves? ¿Por qué crees que HTTP necesita ser más complejo que un simple envío de bytes como hacías con el micro:bit?**
 
+Al comparar los diferentes protocolos entre las similitudes que encuentro está que ambos sirven para interpretar el texto o comandos que le escribe el usuario en otro lenguaje por así decirlo y le devuelve. En las diferencias clave, lo que veo es que por ejemplo en el protocolo ASCII los datos se envían de forma más simple y directa. En cambio http es mucho más complejo, yo he programado páginas en html y es muy confuso. Esto es porque se usa para la comunicación a través de Internet. 
+
 **5. Piensa en una página web simple, como un formulario de login. ¿Qué parte crees que es HTML (ej. los campos de texto, el botón)? ¿Qué parte es CSS (ej. el color del botón, el tipo de letra)? ¿Qué parte es JavaScript (ej. la comprobación de si escribiste algo antes de enviar, el mensaje de “contraseña incorrecta” que aparece sin recargar la página)?**
+
+Si no recuerdo mal la parte de HTML es como todo el aspecto de la página entonces sería por ejemplo el fondo, la distribución de botones y el texto como dice en el ejemplo de la pregunta. La parte que es css no tengo muy clara cual sería porque se qu econ html uno también puede escoger el color de los elementos de la página y como nunca he usado css para crear una pensaría que serviría para hacer interacciones con la página. La parte que creo que es JavaScript es AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
+
 
 **6. Compara el bucle draw() de p5.js con este modelo de “esperar a que algo pase y reaccionar”. ¿Qué ventajas crees que tiene el modelo basado en eventos para una interfaz de usuario web? ¿Sería eficiente tener un bucle draw() redibujando toda la página 60 veces por segundo si nada ha cambiado?
 
@@ -56,4 +67,5 @@ Las coordenadas de x son de la esquina superior izquierda
 **7. ¿Por qué crees que podría ser útil usar JavaScript tanto en el cliente (navegador) como en el servidor?** ¿Se te ocurre alguna ventaja para los desarrolladores?**
 
 **8. Resume con tus propias palabras la diferencia fundamental entre una comunicación HTTP tradicional y una comunicación usando WebSockets/Socket.IO. ¿En qué tipo de aplicaciones has visto o podrías imaginar que se usa esta comunicación en tiempo real?**
+
 
