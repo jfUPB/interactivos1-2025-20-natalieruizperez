@@ -757,6 +757,8 @@ function windowResized() {
 
 -Activida 05:  Incompleta (1.2) Me hubiese gustado hacer que también desapareciera la línea con un condicional en la parte de stroke y también una tecla para reiniciar el globo pero no maneje bien el tiempo y no pude agregarle esos cambios.
 
+NOTA del profesor: luego de revisar son Natalie, si se nota un concepto diferente en la aplicación.
+
 
 
 
