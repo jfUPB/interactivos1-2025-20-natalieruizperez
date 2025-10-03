@@ -74,17 +74,38 @@ HTTP es cuando tú preguntas algo y el servidor te responde, pero después se co
 
 <img width="433" height="199" alt="image" src="https://github.com/user-attachments/assets/56d8b218-0b9b-4e2a-b6a1-0ee707d98e7d" />
 
-Intento de acceder a  http://localhost:3000/page1, la página ya no funciona. Al acceder a http://localhost:3000/pagina_uno la página ya funciona, esto me dice que el servidor responde a las URLs del código y cada ruta está asociada a una respuesta. Cuando cambio la ruta en el código,tengo que usar esa porque el servidor solo responde a las rutas que tiene configuradas.
+Intento de acceder a  http://localhost:3000/page1, la página ya no funciona.
+
+<img width="654" height="370" alt="image" src="https://github.com/user-attachments/assets/76a14021-2890-42be-befb-890d90d21690" />
+
+
+Al acceder a http://localhost:3000/pagina_uno la página ya funciona, esto me dice que el servidor responde a las URLs del código y cada ruta está asociada a una respuesta. Cuando cambio la ruta en el código,tengo que usar esa porque el servidor solo responde a las rutas que tiene configuradas.
+
+<img width="1427" height="902" alt="image" src="https://github.com/user-attachments/assets/76ca72b1-80b1-4160-99f8-89207ec1e32e" />
+
 
 ---
 
 **Abre http://localhost:3000/page1 en una pestaña. Observa la terminal del servidor. ¿Qué mensaje ves? Anota el ID.**
 
+A user connected - ID: d5X40J7eJ3OiMhRyAAAD
+
+
 **Abre http://localhost:3000/page2 en OTRA pestaña. Observa la terminal. ¿Qué mensaje ves? ¿El ID es diferente?**
+
+A user connected - ID: BzlnyVgVfJHLhFisAAAB
 
 **Cierra la pestaña de page1. Observa la terminal. ¿Qué mensaje ves? ¿Coincide el ID con el que anotaste?**
 
+User disconnected - ID: d5X40J7eJ3OiMhRyAAAD
+
 **Cierra la pestaña de page2. Observa la terminal.**
+
+User disconnected - ID: BzlnyVgVfJHLhFisAAAB
+
+**Evidencia**
+
+<img width="440" height="206" alt="image" src="https://github.com/user-attachments/assets/2eeb98eb-f783-44d1-ae92-340eca2b291d" />
 
 ---
 
@@ -92,23 +113,182 @@ Inicia el servidor y abre page1 y page2.
 
 Mueve la ventana de page1. Observa la terminal del servidor. ¿Qué evento se registra (win1update o win2update)? ¿Qué datos (Data:) ves?
 
-Mueve la ventana de page2. Observa la terminal. ¿Qué evento se registra ahora? ¿Qué datos ves?
+<img width="437" height="227" alt="image" src="https://github.com/user-attachments/assets/c1114e1b-2818-4988-8966-05d541ac1df8" />
 
-Experimento clave: cambia socket.broadcast.emit(‘getdata’, page1); por socket.emit(‘getdata’, page1); (quitando broadcast). Reinicia el servidor, abre ambas páginas. Mueve page1. ¿Se actualiza la visualización en page2? ¿Por qué sí o por qué no? (Pista: ¿A quién le envía el mensaje socket.emit?). Restaura el código a broadcast.emit.
+El evento que se registra es que hubo una actualización y manda valores de x, y, el ancho y la altura. También se ve la información de clientes conectados, el status y la actualización que recibe.
+
+**Mueve la ventana de page2. Observa la terminal. ¿Qué evento se registra ahora? ¿Qué datos ves?**
+
+También se ven los mismos datos solo que esta vez se registra win2update en lugar de win1update.
+
+<img width="442" height="242" alt="image" src="https://github.com/user-attachments/assets/21347faf-f893-4bf4-9b40-56a633995ce7" />
+
+**Experimento clave: cambia socket.broadcast.emit(‘getdata’, page1); por socket.emit(‘getdata’, page1); (quitando broadcast). Reinicia el servidor, abre ambas páginas. Mueve page1. ¿Se actualiza la visualización en page2? ¿Por qué sí o por qué no? (Pista: ¿A quién le envía el mensaje socket.emit?). Restaura el código a broadcast.emit.**
+
+<img width="921" height="242" alt="image" src="https://github.com/user-attachments/assets/4f75c0f7-9949-4407-a781-ac699baea6f0" />
+
+Al mover la page1 no se actualiza la page 2, pero al mover la page 2 si se actualiza la uno, esto es porque el socket.emit le envía el mensaje desde la página 1 a la 2 pero no modifiqué la línea de código donde se envía la información desde la página 2.
+
+<img width="490" height="123" alt="image" src="https://github.com/user-attachments/assets/30a13327-2245-48b5-879a-bacd467b9f5a" />
 
 ---
-## Nota 1.375
+**Detuve el servidor, cambié const port = 3000; a const port = 3001; e inicié el servidor. ¿Qué mensaje ves en la consola? ¿En qué puerto dice que está escuchando?**
+
+Ahora aparece que el puerto que está escuchando es el 3001.
+
+<img width="360" height="44" alt="image" src="https://github.com/user-attachments/assets/af053023-81b5-4e7b-b3ad-e874c97cb3dd" />
+
+**Intenta abrir http://localhost:3000/page1. ¿Funciona?**
+
+<img width="1196" height="898" alt="image" src="https://github.com/user-attachments/assets/4d4d23ae-fa76-4059-92db-e8eea5d378c6" />
+
+
+**Intenta abrir http://localhost:3001/page1. ¿Funciona?**
+
+<img width="661" height="312" alt="image" src="https://github.com/user-attachments/assets/3b15ec09-7caf-4c3c-838f-80003bcd0a33" />
+
+
+**¿Qué aprendiste sobre la variable port y la función listen? Restaura el puerto a 3000.**
+
+Al cambiar los valores de const modifico el puerto y cuando inicio el servidor, la terminal muestra el mensaje de que el servidor está escuchando 3001. Cuando abro http://localhost:3000/page1, no funciona porque el servidor ya no esta en ese puerto pero al usar http://localhost:3001/page1, sí funciona. En conclusión la variable port define en qué puerto escucha el servidor, y la función listen() usa esa variable para activarse.
+
+---
+
+## Actividad 04
+
+Abrí page2.html con el servidor corriendo y aprete f12 para abrir la consola de desarrollador, después detuve el servidor Detén el servidor Node.js (Ctrl+C) y refresque la página page2.html. **¿Ves algún error relacionado con la conexión? ¿Qué indica?**
+
+<img width="392" height="431" alt="image" src="https://github.com/user-attachments/assets/3abbd256-cb43-4906-906e-4aa6c4b55d43" />
+
+El error indica que se quiere concectar pero la URL no existe, es necesario abrir la página a tra´ves del servidor para que funcione correctamente.
+
+**Vuelve a iniciar el servidor y refresca la página. ¿Desaparecen los errores?**
+
+Si desaparecen por un momento antes de que intente conectarse.
+
+<img width="400" height="442" alt="image" src="https://github.com/user-attachments/assets/f9e8ec1d-eded-4323-9fcf-ba1f8c9876ec" />
+
+---
+
+Comenta la línea socket.emit(‘win2update’, currentPageData, socket.id); dentro del listener connect. Reinicia el servidor y refresca page1.html y page2.html. Mueve la ventana de page2 un poco para que envíe una actualización.
+
+**¿Qué pasó? ¿Por qué?**
+
+
+---
+
+**Abre ambas páginas (es posible que ya las tengas abiertas). Mueve la ventana de page1. Observa la consola del navegador de page2. ¿Qué datos muestra?**
+
+<img width="881" height="485" alt="image" src="https://github.com/user-attachments/assets/9ac15d37-49ce-4bbb-b544-23070a0d5e8b" />
+
+Se muestran los datos de sincronización y page 2 recibe valores de x, y , altura y ancho desde la page1.
+
+**Mueve la ventana de page2. Observa la consola de page1. ¿Qué pasa? ¿Por qué?**
+
+Pasa lo mismo, los valores se actualizan, esto pasa porque el servidor está revisando constantemente que cambios hay entre las ods páginas para actualizarlo, el cambio se hace en la page uno porque es el receptor de lo que haga la page 2.
+
+---
+
+**Observa checkWindowPosition() en page2.js y modifica el código del if para comprobar si el código dentreo de este se ejecuta.**
+Mueve cada ventana y observa las consolas.
+
+  Página 1
+
+<img width="1777" height="978" alt="image" src="https://github.com/user-attachments/assets/9f2cc957-5d72-4b0f-8449-e0ce5ea128e6" />
+
+
+  Página 2
+<img width="885" height="483" alt="image" src="https://github.com/user-attachments/assets/35db86e6-acde-4631-8f49-d64e88546514" />
+
+**¿Qué puedes concluir y por qué?**
+
+Modifiqué la función checkWindowPosition() en page2.js que aparezca un mensaje cuando sucede el if. Al mover la ventana, el mensaje apareció y eso confirma que el if detecta correctamente los cambios en posición o tamaño de la ventana. En page1.js no salió el mensaje porque modifique el script.
+
+---
+
+Cambia el background(220) para que dependa de la distancia entre las ventanas. Puedes calcular la magnitud del resultingVector usando let distancia = resultingVector.mag(); y luego usa map() para convertir esa distancia a un valor de gris o color. background(map(distancia, 0, 1000, 255, 0)); (ajusta el rango 0-1000 según sea necesario).
+
+```js
+function draw() {
+    let vector1 = createVector(currentPageData.x, currentPageData.y);
+    let vector2 = createVector(remotePageData.x, remotePageData.y);
+    let resultingVector = createVector(vector2.x - vector1.x, vector2.y - vector1.y);
+    
+    let distancia = resultingVector.mag();
+    let gris = map(distancia, 0, 1000, 255, 0);
+    background(gris); // cambia el fondo según la distancia
+
+    if (!isConnected) {
+        showStatus('Conectando al servidor...', color(255, 165, 0));
+        return;
+    }
+    
+    if (!hasRemoteData) {
+        showStatus('Esperando conexión de la otra ventana...', color(255, 165, 0));
+        return;
+    }
+    
+    if (!isFullySynced) {
+        showStatus('Sincronizando datos...', color(255, 165, 0));
+        return;
+    }
+
+    // Solo dibujar cuando esté completamente sincronizado
+    drawCircle(point1[0], point1[1]);
+    checkWindowPosition();
+
+    stroke(50);
+    strokeWeight(20);
+    drawCircle(resultingVector.x + remotePageData.width / 2, resultingVector.y + remotePageData.height / 2);
+    line(point1[0], point1[1], resultingVector.x + remotePageData.width / 2, resultingVector.y + remotePageData.height / 2);
+}
+```
+
+Si están más lejos se pone más oscuro.
+
+<img width="1791" height="995" alt="image" src="https://github.com/user-attachments/assets/75233512-3513-45f9-9376-edefc5cc5365" />
+
+Mientras más cerca, más claros.
+
+<img width="1802" height="985" alt="image" src="https://github.com/user-attachments/assets/b8c405fa-d26c-4135-bd09-aff4a1f24b2b" />
+
+**Inventa otra modificación creativa.**
+
+Ahora mientras más lejos estén la bola se vuelve más grande.
+
+<img width="1772" height="871" alt="image" src="https://github.com/user-attachments/assets/357a4e30-2751-45ec-b357-46f67364d7a5" />
+
+
+```js
+function drawCircle(x, y) {
+    let distancia = dist(currentPageData.x, currentPageData.y, remotePageData.x, remotePageData.y);
+    let size = map(distancia, 0, 1000, 100, 300); // Tamaño cambia de 100 (cerca) a 300 (lejos)
+    fill(255, 0, 0);
+    ellipse(x, y, size, size);
+}
+```
+
+---
+
+## Actividad 05
+
+Con el ejercico anterior se me ocurrió hacer un código en el que el círculo sea una especie de globo y al mover la otra pestaña este se va a ir inflando cada vez que la ventana se acerque al círculo haciendo que explote cuando llegue a un tamaño determinado.
+
+---
+
+## Nota 3.0
 
 
 -Actividad 01: Completa (0.5)
 
 -Activida 02:  Completa (0.5)
 
--Actividad 03: Probe la primera solamente, hice 1/4 (1.375)
+-Actividad 03: Completa (1.0)
 
--Actividad 04: Incompleta (0)
+-Actividad 04: Completa (1.0)
 
 -Activida 05:  Incompleta (0)
+
 
 
 
