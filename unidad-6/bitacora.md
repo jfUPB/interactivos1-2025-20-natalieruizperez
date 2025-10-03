@@ -744,7 +744,7 @@ function windowResized() {
 
 ---
 
-## Nota 4.5
+## Nota 4.2
 
 
 -Actividad 01: Completa (0.5)
@@ -755,7 +755,8 @@ function windowResized() {
 
 -Actividad 04: Completa (1.0)
 
--Activida 05:  Incompleta (1.5) Me hubiese gustado hacer que también desapareciera la línea con un condicional en la parte de stroke y también una tecla para reiniciar el globo pero no maneje bien el tiempo y no pude agregarle esos cambios.
+-Activida 05:  Incompleta (1.2) Me hubiese gustado hacer que también desapareciera la línea con un condicional en la parte de stroke y también una tecla para reiniciar el globo pero no maneje bien el tiempo y no pude agregarle esos cambios.
+
 
 
 
