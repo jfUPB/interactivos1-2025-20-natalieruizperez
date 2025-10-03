@@ -168,12 +168,6 @@ Si desaparecen por un momento antes de que intente conectarse.
 
 <img width="400" height="442" alt="image" src="https://github.com/user-attachments/assets/f9e8ec1d-eded-4323-9fcf-ba1f8c9876ec" />
 
----
-
-Comenta la línea socket.emit(‘win2update’, currentPageData, socket.id); dentro del listener connect. Reinicia el servidor y refresca page1.html y page2.html. Mueve la ventana de page2 un poco para que envíe una actualización.
-
-**¿Qué pasó? ¿Por qué?**
-
 
 ---
 
@@ -272,11 +266,485 @@ function drawCircle(x, y) {
 
 ## Actividad 05
 
-Con el ejercico anterior se me ocurrió hacer un código en el que el círculo sea una especie de globo y al mover la otra pestaña este se va a ir inflando cada vez que la ventana se acerque al círculo haciendo que explote cuando llegue a un tamaño determinado.
+Con el ejercicio anterior se me ocurrió hacer un código en el que el círculo sea una especie de globo y al mover la otra pestaña este se van a ir inflando cada vez que la ventana se acerque a la bola haciendo que explote cuando llegue a un tamaño determinado.
+
+**Server**
+
+```js
+const express = require('express');
+const http = require('http');
+const socketIO = require('socket.io');
+const path = require('path');
+const app = express();
+const server = http.createServer(app); 
+const io = socketIO(server); 
+const port = 3000;
+
+let page1 = { x: 0, y: 0, width: 100, height: 100 };
+let page2 = { x: 0, y: 0, width: 100, height: 100 };
+let connectedClients = new Map();
+let syncedClients = new Set();
+
+
+app.use(express.static(path.join(__dirname, 'views')));
+
+app.get('/page1', (req, res) => {
+    res.sendFile(path.join(__dirname, 'views', 'page1.html'));
+});
+
+app.get('/page2', (req, res) => {
+    res.sendFile(path.join(__dirname, 'views', 'page2.html'));
+});
+
+io.on('connection', (socket) => {
+    console.log('A user connected - ID:', socket.id);
+    connectedClients.set(socket.id, { page: null, synced: false });
+    
+    socket.on('disconnect', () => {
+        console.log('User disconnected - ID:', socket.id);
+        connectedClients.delete(socket.id);
+        syncedClients.delete(socket.id);
+        // Notificar a otros clientes que se perdió la sincronización
+        socket.broadcast.emit('peerDisconnected');
+    });
+
+    socket.on('win1update', (window1, sendid) => {
+        console.log('Received win1update from ID:', socket.id, 'Data:', window1);
+        if (isValidWindowData(window1)) {
+            page1 = window1;
+            connectedClients.set(socket.id, { page: 'page1', synced: false });
+            socket.broadcast.emit('getdata', { data: page1, from: 'page1' });
+            checkAndNotifySyncStatus();
+        }
+    });
+
+    socket.on('win2update', (window2, sendid) => {
+        console.log('Received win2update from ID:', socket.id, 'Data:', window2);
+        if (isValidWindowData(window2)) {
+            page2 = window2;
+            connectedClients.set(socket.id, { page: 'page2', synced: false });
+            socket.broadcast.emit('getdata', { data: page2, from: 'page2' });
+            checkAndNotifySyncStatus();
+        }
+    });
+
+    socket.on('requestSync', () => {
+        const clientInfo = connectedClients.get(socket.id);
+        if (clientInfo?.page === 'page1') {
+            socket.emit('getdata', { data: page2, from: 'page2' });
+        } else if (clientInfo?.page === 'page2') {
+            socket.emit('getdata', { data: page1, from: 'page1' });
+        }
+    });
+
+    socket.on('confirmSync', () => {
+        syncedClients.add(socket.id);
+        const clientInfo = connectedClients.get(socket.id);
+        if (clientInfo) {
+            connectedClients.set(socket.id, { ...clientInfo, synced: true });
+        }
+        checkAndNotifySyncStatus();
+    });    
+});
+
+function isValidWindowData(data) {
+    return data && 
+           typeof data.x === 'number' && 
+           typeof data.y === 'number' && 
+           typeof data.width === 'number' && data.width > 0 &&
+           typeof data.height === 'number' && data.height > 0;
+}
+
+function checkAndNotifySyncStatus() {
+    const page1Clients = Array.from(connectedClients.entries()).filter(([id, info]) => info.page === 'page1');
+    const page2Clients = Array.from(connectedClients.entries()).filter(([id, info]) => info.page === 'page2');
+    
+    const bothPagesConnected = page1Clients.length > 0 && page2Clients.length > 0;
+    const allClientsSynced = Array.from(connectedClients.keys()).every(id => syncedClients.has(id));
+    const hasMinimumClients = connectedClients.size >= 2;
+
+    console.log(`Debug - Connected clients: ${connectedClients.size}, Page1: ${page1Clients.length}, Page2: ${page2Clients.length}, Synced: ${syncedClients.size}`);
+
+    
+    if (bothPagesConnected && allClientsSynced && hasMinimumClients) {
+        io.emit('fullySynced', true);
+        console.log('All clients are fully synced');
+    } else {
+        io.emit('fullySynced', false);
+        console.log(`Sync status: pages=${bothPagesConnected}, synced=${allClientsSynced}, clients=${connectedClients.size}`);
+    }
+}
+
+server.listen(port, () => {
+    console.log(`Server is listening on http://localhost:${port}`);
+});
+
+```
+
+**Page 1**
+
+```js
+
+let currentPageData = {
+    x: window.screenX,
+    y: window.screenY,
+    width: window.innerWidth,
+    height: window.innerHeight
+}
+
+let previousPageData = {
+    x: window.screenX,
+    y: window.screenY,
+    width: window.innerWidth,
+    height: window.innerHeight
+};
+
+let remotePageData = { x: 0, y: 0, width: 100, height: 100 };
+let point1 = [currentPageData.width / 2, currentPageData.height / 2];
+let socket;
+let isConnected = false;
+let hasRemoteData = false;
+let isFullySynced = false;
+let connectionTimeout;
+let balloonSize = 100;
+let exploded = false;
+let maxBalloonSize = 300; // Tamaño límite para que explote
+
+
+function setup() {
+    createCanvas(windowWidth, windowHeight);
+    frameRate(60);
+    socket = io();
+
+    socket.on('connect', () => {
+        console.log('Connected with ID:', socket.id);
+        isConnected = true;
+        socket.emit('win1update', currentPageData, socket.id);
+        
+        // Solicitar sincronización después de un breve delay
+        setTimeout(() => {
+            socket.emit('requestSync');
+        }, 500);
+    });
+
+    socket.on('getdata', (response) => {
+        if (response && response.data && isValidRemoteData(response.data)) {
+            remotePageData = response.data;
+            hasRemoteData = true;
+            console.log('Received valid remote data:', remotePageData);
+            socket.emit('confirmSync');
+        }
+    });
+
+    socket.on('fullySynced', (synced) => {
+        isFullySynced = synced;
+        console.log('Sync status:', synced ? 'SYNCED' : 'NOT SYNCED');
+    });
+
+    socket.on('peerDisconnected', () => {
+        hasRemoteData = false;
+        isFullySynced = false;
+        console.log('Peer disconnected, waiting for reconnection...');
+    });
+
+    socket.on('disconnect', () => {
+        isConnected = false;
+        hasRemoteData = false;
+        isFullySynced = false;
+        console.log('Disconnected from server');
+    });
+}
+
+function isValidRemoteData(data) {
+    return data && 
+           typeof data.x === 'number' && 
+           typeof data.y === 'number' && 
+           typeof data.width === 'number' && data.width > 0 &&
+           typeof data.height === 'number' && data.height > 0;
+}
+
+function checkWindowPosition() {
+    currentPageData = {
+        x: window.screenX,
+        y: window.screenY,
+        width: window.innerWidth,
+        height: window.innerHeight
+    };
+
+    if (currentPageData.x !== previousPageData.x || currentPageData.y !== previousPageData.y || 
+        currentPageData.width !== previousPageData.width || currentPageData.height !== previousPageData.height) {
+
+        point1 = [currentPageData.width / 2, currentPageData.height / 2]
+        socket.emit('win1update', currentPageData, socket.id);
+        previousPageData = currentPageData;
+    }
+}
+
+
+function draw() {
+    let vector1 = createVector(currentPageData.x, currentPageData.y);
+    let vector2 = createVector(remotePageData.x, remotePageData.y);
+    let resultingVector = createVector(vector2.x - vector1.x, vector2.y - vector1.y);
+
+    let distancia = resultingVector.mag();
+    let gris = map(distancia, 0, 1000, 255, 0);
+    background(gris); // cambia el fondo según la distancia
+
+    if (!isConnected) {
+        showStatus('Conectando al servidor...', color(255, 165, 0));
+        return;
+    }
+
+    if (!hasRemoteData) {
+        showStatus('Esperando conexión de la otra ventana...', color(255, 165, 0));
+        return;
+    }
+
+    if (!isFullySynced) {
+        showStatus('Sincronizando datos...', color(255, 165, 0));
+        return;
+    }
+
+    // Solo dibujar cuando esté completamente sincronizado
+    drawCircle(point1[0], point1[1]);
+    checkWindowPosition();
+
+    stroke(50);
+    strokeWeight(20);
+    drawCircle(resultingVector.x + remotePageData.width / 2, resultingVector.y + remotePageData.height / 2);
+    line(point1[0], point1[1], resultingVector.x + remotePageData.width / 2, resultingVector.y + remotePageData.height / 2);
+}
+
+function showStatus(message, statusColor) {
+    textSize(24);
+    textAlign(CENTER, CENTER);
+    noStroke();
+    // Dibujar rectángulo de fondo para el texto
+    fill(0, 0, 0, 150); // Negro semi-transparente
+    rectMode(CENTER);
+    let textW = textWidth(message) + 40;
+    let textH = 40;
+    rect(width / 2, 1*height / 6, textW, textH, 10);
+    // Dibujar el texto
+    fill(statusColor);
+    text(message, width / 2, 1*height / 6);
+}
+
+function drawCircle(x, y) {
+    if (exploded) {
+        return; // No dibujamos nada si explotó
+    }
+
+    // Calcular distancia entre las dos ventanas
+    let distancia = dist(currentPageData.x, currentPageData.y, remotePageData.x, remotePageData.y);
+
+    // Solo inflar si están lo suficientemente cerca
+    if (distancia < 300) {
+        balloonSize += 2; // Se infla poco a poco mientras están cerca
+    }
+
+    if (balloonSize >= maxBalloonSize) {
+        exploded = true; // Explotó
+        return;
+    }
+
+    fill(255, 0, 0);
+    ellipse(x, y, balloonSize, balloonSize);
+}
+
+
+
+function windowResized() {
+    resizeCanvas(windowWidth, windowHeight);
+}
+
+```
+
+**Page 2**
+
+```js
+let currentPageData = {
+    x: window.screenX,
+    y: window.screenY,
+    width: window.innerWidth,
+    height: window.innerHeight
+
+}
+
+let previousPageData = {
+    x: window.screenX,
+    y: window.screenY,
+    width: window.innerWidth,
+    height: window.innerHeight
+};
+
+let remotePageData = { x: 0, y: 0, width: 100, height: 100 };
+let point2 = [currentPageData.width / 2, currentPageData.height / 2];
+let socket;
+let isConnected = false;
+let hasRemoteData = false;
+let isFullySynced = false;
+let connectionTimeout;
+let balloonSize = 100;
+let exploded = false;
+let maxBalloonSize = 300; // Tamaño límite para que explote
+
+
+function setup() {
+    createCanvas(windowWidth, windowHeight);
+    frameRate(60);
+    socket = io();
+
+    socket.on('connect', () => {
+        console.log('Connected with ID:', socket.id);
+        isConnected = true;
+        socket.emit('win2update', currentPageData, socket.id);
+        
+        // Solicitar sincronización después de un breve delay
+        setTimeout(() => {
+            socket.emit('requestSync');
+        }, 500);
+    });
+
+    socket.on('getdata', (response) => {
+        if (response && response.data && isValidRemoteData(response.data)) {
+            remotePageData = response.data;
+            hasRemoteData = true;
+            console.log('Received valid remote data:', remotePageData);
+            socket.emit('confirmSync');
+        }
+    });
+
+    socket.on('fullySynced', (synced) => {
+        isFullySynced = synced;
+        console.log('Sync status:', synced ? 'SYNCED' : 'NOT SYNCED');
+    });
+
+    socket.on('peerDisconnected', () => {
+        hasRemoteData = false;
+        isFullySynced = false;
+        console.log('Peer disconnected, waiting for reconnection...');
+    });
+
+    socket.on('disconnect', () => {
+        isConnected = false;
+        hasRemoteData = false;
+        isFullySynced = false;
+        console.log('Disconnected from server');
+    });
+}
+
+function isValidRemoteData(data) {
+    return data && 
+           typeof data.x === 'number' && 
+           typeof data.y === 'number' && 
+           typeof data.width === 'number' && data.width > 0 &&
+           typeof data.height === 'number' && data.height > 0;
+}
+
+function checkWindowPosition() {
+    currentPageData = {
+        x: window.screenX,
+        y: window.screenY,
+        width: window.innerWidth,
+        height: window.innerHeight
+    };
+
+    if (currentPageData.x !== previousPageData.x || currentPageData.y !== previousPageData.y || 
+        currentPageData.width !== previousPageData.width || currentPageData.height !== previousPageData.height) {
+
+
+
+        point2 = [currentPageData.width / 2, currentPageData.height / 2]
+        socket.emit('win2update', currentPageData, socket.id);
+        previousPageData = currentPageData; 
+    }
+}
+
+
+function draw() {
+    let vector1 = createVector(currentPageData.x, currentPageData.y);
+    let vector2 = createVector(remotePageData.x, remotePageData.y);
+    let resultingVector = createVector(vector2.x - vector1.x, vector2.y - vector1.y);
+
+    let distancia = resultingVector.mag();
+    let gris = map(distancia, 0, 1000, 255, 0);
+    background(gris); // cambia el fondo según la distancia
+
+    if (!isConnected) {
+        showStatus('Conectando al servidor...', color(255, 165, 0));
+        return;
+    }
+
+    if (!hasRemoteData) {
+        showStatus('Esperando conexión de la otra ventana...', color(255, 165, 0));
+        return;
+    }
+
+    if (!isFullySynced) {
+        showStatus('Sincronizando datos...', color(255, 165, 0));
+        return;
+    }
+
+    // Solo dibujar cuando esté completamente sincronizado
+    drawCircle(point2[0], point2[1]);
+    checkWindowPosition();
+
+    stroke(50);
+    strokeWeight(20);
+    drawCircle(resultingVector.x + remotePageData.width / 2, resultingVector.y + remotePageData.height / 2);
+    line(point2[0], point2[1], resultingVector.x + remotePageData.width / 2, resultingVector.y + remotePageData.height / 2);
+}
+
+function showStatus(message, statusColor) {
+    textSize(24);
+    textAlign(CENTER, CENTER);
+    noStroke();
+    // Dibujar rectángulo de fondo para el texto
+    fill(0, 0, 0, 150); // Negro semi-transparente
+    rectMode(CENTER);
+    let textW = textWidth(message) + 40;
+    let textH = 40;
+    rect(width / 2, 1*height / 6, textW, textH, 10);
+    // Dibujar el texto
+    fill(statusColor);
+    text(message, width / 2, 1*height / 6);
+}
+
+function drawCircle(x, y) {
+    if (exploded) {
+        return; // No dibujamos nada si explotó
+    }
+
+    // Calcular distancia entre las dos ventanas
+    let distancia = dist(currentPageData.x, currentPageData.y, remotePageData.x, remotePageData.y);
+
+    // Solo inflar si están lo suficientemente cerca
+    if (distancia < 300) {
+        balloonSize += 2; // Se infla poco a poco mientras están cerca
+    }
+
+    if (balloonSize >= maxBalloonSize) {
+        exploded = true; // Explotó
+        return;
+    }
+
+    fill(255, 0, 0);
+    ellipse(x, y, balloonSize, balloonSize);
+}
+
+
+
+function windowResized() {
+    resizeCanvas(windowWidth, windowHeight);
+}
+
+```
+
 
 ---
 
-## Nota 3.0
+## Nota 4.5
 
 
 -Actividad 01: Completa (0.5)
@@ -287,7 +755,8 @@ Con el ejercico anterior se me ocurrió hacer un código en el que el círculo s
 
 -Actividad 04: Completa (1.0)
 
--Activida 05:  Incompleta (0)
+-Activida 05:  Incompleta (1.5) Me hubiese gustado hacer que también desapareciera la línea y una tecla para reiniciar el globo.
+
 
 
 
