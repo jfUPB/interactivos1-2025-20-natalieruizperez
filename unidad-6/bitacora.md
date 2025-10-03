@@ -10,30 +10,28 @@
 **1. ¿Qué ocurrió en la terminal cuando ejecutaste npm install? ¿Cuál crees que es su propósito?**
 <img width="356" height="75" alt="image" src="https://github.com/user-attachments/assets/01c2d85b-f814-4f35-b173-0092e7a8e953" />
 
-
 Cuando puse npm install se añadieron paquetes, es decir, se instalan librerías que se necesitan y creo que su propósito es para no tener que distribuir las dependencias y así descargarlas.
 
 **2. ¿Qué mensaje específico apareció en la terminal después de ejecutar npm start? ¿Qué indica este mensaje?**
+
 <img width="545" height="96" alt="image" src="https://github.com/user-attachments/assets/5e0cd717-794b-4a3a-892e-3e005a012cfe" />
-Apraece que está escuchando la url en ese puerto 
-
-
+Aparece que está escuchando la url en ese puerto.
 
 **3. Describe lo que ves inicialmente en page1 y page2 en tu navegador.**
 
-Inicialmente se ven dos círculos solos cada uno con una esfera 
+Inicialmente se ven dos círculos solos cada uno con una esfera pero aunque se muevan las pestañas estas permanecen conectadas 
 
 **4. ¿Qué mensajes aparecieron en la terminal del servidor cuando abriste page1 y page2?**
 
 <img width="681" height="188" alt="image" src="https://github.com/user-attachments/assets/3adfa141-8595-4bd0-936c-a158369c7955" />
 
-Cuando se apren aparece que un usuario se conecto y el identificador, lo mismo con la página dos. También aparece que se están recibiendo los datos. Llega loa posición en x, en y, el ancho de la ventana y la altura de la ventana.
+Aparece que un usuario se conectó y el identificador, lo mismo con la página dos. También aparece que se están recibiendo los datos. Llega la posición en x, en y, el ancho de la ventana y la altura de la ventana.
 
 **5. Describe qué sucede en ambas páginas del navegador cuando mueves una de las ventanas. ¿Cambia algo visualmente? ¿Qué mensajes aparecen (si los hay) en la consola del navegador (usualmente accesible con F12 -> Pestaña Consola) y en la terminal del servidor?**
 
 Visualmente en ambas páginas hay dos círculos con una línea negra por la mitad, al arrastrar las ventanas se ve como esa línea se actualiza y se ve una conexión entre ambos círculos a pesar de estar en ventanas diferentes.
 
-Las coordenadas de x son de la esquina superior izquierda
+Las coordenadas de x son de la esquina superior izquierda.
 
 ---
 ## Actividad 02
@@ -46,7 +44,6 @@ En mi casa uso wifi, si esa rampa se corta entonces ya no sería posible que hay
 
 Al pedir comida en un restaurante el cliente es la persona que va a pedir comida y el servidor es el restaurante porque es el que da comida, esta comida es la misma que pide el cliente y la que entrega el restaurante. Otra relación cliente sevidor es en las comisiones, un artista da su servicio que puede ser hacer un dibujo o un modelo 3d y el cliente lo recibe.
 
-
 **3. Toma la URL de tu sitio web favorito. Intenta identificar el protocolo, el nombre de dominio y la ruta (si la hay). ¿Qué crees que pasa si solo escribes el nombre de dominio (ej. www.google.com) sin una ruta específica? ¿Qué “página por defecto” crees que te envía el servidor?**
 
 Mi página favorita es https://www.friv.com/, creo que si no escribo la ruta específica de todas formas me lleva a la dirección correcta porque cuando me pongo a pensar nunca la escribo.
@@ -57,15 +54,61 @@ Al comparar los diferentes protocolos entre las similitudes que encuentro está 
 
 **5. Piensa en una página web simple, como un formulario de login. ¿Qué parte crees que es HTML (ej. los campos de texto, el botón)? ¿Qué parte es CSS (ej. el color del botón, el tipo de letra)? ¿Qué parte es JavaScript (ej. la comprobación de si escribiste algo antes de enviar, el mensaje de “contraseña incorrecta” que aparece sin recargar la página)?**
 
-Si no recuerdo mal la parte de HTML es como todo el aspecto de la página entonces sería por ejemplo el fondo, la distribución de botones y el texto como dice en el ejemplo de la pregunta. La parte que es css no tengo muy clara cual sería porque se qu econ html uno también puede escoger el color de los elementos de la página y como nunca he usado css para crear una pensaría que serviría para hacer interacciones con la página. La parte que creo que es JavaScript es AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-
-
+En una página simple como un formulario de login, el HTML es lo que crea los campos y botones. El CSS cambia cómo se ve todo el aspecto de la página, los colores y las letras. Y el JavaScript es lo que hace que la página reaccione, como revisar si se llena algo o mostrar mensajes sin recargar.
 
 **6. Compara el bucle draw() de p5.js con este modelo de “esperar a que algo pase y reaccionar”. ¿Qué ventajas crees que tiene el modelo basado en eventos para una interfaz de usuario web? ¿Sería eficiente tener un bucle draw() redibujando toda la página 60 veces por segundo si nada ha cambiado?
 
+El draw() de p5.js siempre está dibujando aunque no pase nada nuevo. En cambio, el modelo basado en eventos solo  funciona cuando pasa algo, entonces es más eficiente porque no hace trabajo de más y la página va más rápido.
    
 **7. ¿Por qué crees que podría ser útil usar JavaScript tanto en el cliente (navegador) como en el servidor?** ¿Se te ocurre alguna ventaja para los desarrolladores?**
 
+Usar JavaScript en cliente y servidor es bueno porque asi solo es necesario saber un lenguaje y seria mas fácil de hacer. También se puede compartir código entre cliente y servidor, entonces no hay que repetir mucho trabajo.
+
 **8. Resume con tus propias palabras la diferencia fundamental entre una comunicación HTTP tradicional y una comunicación usando WebSockets/Socket.IO. ¿En qué tipo de aplicaciones has visto o podrías imaginar que se usa esta comunicación en tiempo real?**
+
+HTTP es cuando tú preguntas algo y el servidor te responde, pero después se corta la conexión. WebSockets es como tener una llamada y dos pueden hablar sin parar. Esto sirve para cosas que necesitan funcionar en tiempo real, como juegos, chats o apps.
+
+## Activad 03
+
+**1. Detuve el servidor, después cambié la primera ruta de /page1 a /pagina_uno e inicié el servidor.**
+
+<img width="433" height="199" alt="image" src="https://github.com/user-attachments/assets/56d8b218-0b9b-4e2a-b6a1-0ee707d98e7d" />
+
+Intento de acceder a  http://localhost:3000/page1, la página ya no funciona. Al acceder a http://localhost:3000/pagina_uno la página ya funciona, esto me dice que el servidor responde a las URLs del código y cada ruta está asociada a una respuesta. Cuando cambio la ruta en el código,tengo que usar esa porque el servidor solo responde a las rutas que tiene configuradas.
+
+---
+
+**Abre http://localhost:3000/page1 en una pestaña. Observa la terminal del servidor. ¿Qué mensaje ves? Anota el ID.**
+
+**Abre http://localhost:3000/page2 en OTRA pestaña. Observa la terminal. ¿Qué mensaje ves? ¿El ID es diferente?**
+
+**Cierra la pestaña de page1. Observa la terminal. ¿Qué mensaje ves? ¿Coincide el ID con el que anotaste?**
+
+**Cierra la pestaña de page2. Observa la terminal.**
+
+---
+
+Inicia el servidor y abre page1 y page2.
+
+Mueve la ventana de page1. Observa la terminal del servidor. ¿Qué evento se registra (win1update o win2update)? ¿Qué datos (Data:) ves?
+
+Mueve la ventana de page2. Observa la terminal. ¿Qué evento se registra ahora? ¿Qué datos ves?
+
+Experimento clave: cambia socket.broadcast.emit(‘getdata’, page1); por socket.emit(‘getdata’, page1); (quitando broadcast). Reinicia el servidor, abre ambas páginas. Mueve page1. ¿Se actualiza la visualización en page2? ¿Por qué sí o por qué no? (Pista: ¿A quién le envía el mensaje socket.emit?). Restaura el código a broadcast.emit.
+
+---
+## Nota 1.375
+
+
+-Actividad 01: Completa (0.5)
+
+-Activida 02:  Completa (0.5)
+
+-Actividad 03: Probe la primera solamente, hice 1/4 (1.375)
+
+-Actividad 04: Incompleta (0)
+
+-Activida 05:  Incompleta (0)
+
 
 
