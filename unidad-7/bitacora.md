@@ -27,6 +27,11 @@ Describe brevemente qué hace npm install y npm start.
 
 La función touch move se encanga de 
 **3. Compara brevemente Dev Tunnels con simplemente usar la IP local. ¿Cuáles son las ventajas y desventajas de cada uno?**
+
+
+AAAAAAAAAAAAAAAAAAAA
+---
+
 **4. Coloca en tu bitácora capturas de pantalla del sistema completo funcionando. Esto lo puedes hacer abriendo tanto el mobile como el desktop en tu computador y tomando una captura de pantalla de todos los involucrados (celular, computador y terminal).**
 
 ---
@@ -63,6 +68,7 @@ Rúbrica
 
 ---
 ## Nota:
+
 
 
 
