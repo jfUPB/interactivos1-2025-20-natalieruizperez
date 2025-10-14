@@ -25,9 +25,9 @@ Describe brevemente qué hace npm install y npm start.
 
 **2. Describe la función de touchMoved() y por qué se usa la variable threshold en el cliente móvil.**
 
-La función touch move se encanga de 
-**3. Compara brevemente Dev Tunnels con simplemente usar la IP local. ¿Cuáles son las ventajas y desventajas de cada uno?**
+La función touch move funciona cuando se toca la pantalla y lo que hace es que manda un bloque de código para que se ejecute al tocar la pantalla. S eusa la variable threshold en el cliente movil para que...EEEEEEEEEEEEEEE 
 
+**3. Compara brevemente Dev Tunnels con simplemente usar la IP local. ¿Cuáles son las ventajas y desventajas de cada uno?**
 
 AAAAAAAAAAAAAAAAAAAA
 ---
@@ -68,6 +68,7 @@ Rúbrica
 
 ---
 ## Nota:
+
 
 
 
