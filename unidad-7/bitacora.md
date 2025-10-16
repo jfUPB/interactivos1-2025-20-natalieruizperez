@@ -30,11 +30,12 @@ Funcionó la interacción pero hay un retraso, al mover el dedo la bola roja se 
 
 **2. Describe la función de touchMoved() y por qué se usa la variable threshold en el cliente móvil.**
 
-La función touch move funciona cuando se toca la pantalla y lo que hace es que manda un bloque de código para que se ejecute al tocar la pantalla. S eusa la variable threshold en el cliente movil para que...EEEEEEEEEEEEEEE 
+La función touchMoved() cada vez que uno mueve el dedo, detecta ese movimiento y puede manda datos. La variable threshold se usar para solo mandar la información importante, no cada evento pequeño que pase.
 
 **3. Compara brevemente Dev Tunnels con simplemente usar la IP local. ¿Cuáles son las ventajas y desventajas de cada uno?**
 
-AAAAAAAAAAAAAAAAAAAA
+La IP local funciona cuando ambos están conectados a la misma red, en cambio Dev Tunnels se usa para crear un lugar público que no depende de la red. En cuanto a desventajas la verdad ambas me parecen muy inseguras y tengo el concepto de que sería muy fácil para otras personas acceder a ellas. En ventajas está que Dev Tunnels se puede usar independientmente de la red y la de la IP local qu no se necesita internet, me hace pensar en los juegos de celular que me gustaban de pequeña que se podían jugar de forma multijugador siempre y cuando uno estuviese cerca de la otra persona y lo mejor era que se podía usar sin internet.
+
 ---
 
 **4. Coloca en tu bitácora capturas de pantalla del sistema completo funcionando. Esto lo puedes hacer abriendo tanto el mobile como el desktop en tu computador y tomando una captura de pantalla de todos los involucrados (celular, computador y terminal).**
@@ -55,9 +56,22 @@ AAAAAAAAAAAAAAAAAAAA
 
 **2. Explica detalladamente el flujo de un mensaje táctil: ¿Qué evento lo envía desde el móvil? ¿Qué evento lo recibe el servidor? ¿Qué hace el servidor con él? ¿Qué evento lo envía el servidor al escritorio? ¿Por qué se usa socket.broadcast.emit en lugar de io.emit o socket.emit en este caso?**
 
+El evento touchMoved() lo envía desde el celular, el evento que lo envía es el socket.broadcast.emit y lo recibe el socket.emit que se encarga de mandarlo.
+
+
+socket.emit solo le manda al cliente que lo envió (no sirve acá).
+
+io.emit le manda a todos, incluyendo al que lo mandó (no lo queremos porque el móvil ya tiene la info).
+
+socket.broadcast.emit le manda a todos menos al emisor, que es justo lo que queremos en este cas
+
 **3. Si conectaras dos computadores de escritorio y un móvil a este servidor, y movieras el dedo en el móvil, ¿Quién recibiría el mensaje retransmitido por el servidor? ¿Por qué?**
 
+El mensaje lo recibirían las dos computadoras porque el que emite el mensaje es el celular y quién lo recibe el computador por el socket.broadcast.emit que le manda a todos menos al que envía mensajes.
+
 **4. ¿Qué información útil te proporcionan los mensajes console.log en el servidor durante la ejecución?**
+
+Permite saber qué está sucediendo y qué líneas de código se están ejecutando correctamente, el consele.log también lo uso cuando preogramo en unity y es muy útil para saber qué está pasando y también cuál información recibe el programa. En este código informa sobre si se conectaron o desconectaron los clientes para que uno pueda saber si está funcionando, además también muestra las coordenadas.
 
 ---
 ## Actividad 04
@@ -82,6 +96,10 @@ Rúbrica
 
 ---
 ## Nota:
+
+-Actividad 01: Completa (0.5)
+-Actividad 02: Completa (0.5)
+-Actividad 03: Completa (1.0)
 
 
 
