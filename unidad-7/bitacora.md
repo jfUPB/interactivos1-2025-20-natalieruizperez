@@ -4,17 +4,22 @@
 ## Acividad 01
 **1. ¿Qué URL de Dev Tunnels obtuviste? ¿Por qué crees que necesitamos usar esta URL en lugar de http://localhost:3000 o la IP local de tu computador para que el celular se conecte?**
 
+Porque es local osea del propio dispositivo y para que se conecten tiene que ser una que tengan en comúm
 
-Describe brevemente qué hace npm install y npm start.
+**2. Describe brevemente qué hace npm install y npm start.**
 
-**2. El npm install se encarga de añadir los paquetes, instala el express y socket.io mientas qué el start hace que se inicie el servidor y la aplicación haciendo que la URL funcione correctamente.**
+El npm install se encarga de añadir los paquetes, instala el express y socket.io mientas qué el start hace que se inicie el servidor y la aplicación haciendo que la URL funcione correctamente.
 
 <img width="582" height="361" alt="image" src="https://github.com/user-attachments/assets/671b09b1-1567-4ca1-b2bf-9aab2775bbbe" />
 
-
 **3. ¿Qué mensajes observaste en la terminal del servidor al conectar el cliente de escritorio y el cliente móvil? ¿Eran diferentes los mensajes o identificadores?**
+Observo mensajes que decían que hay nuevos clientes conectados, supongo que uno era el computador y el otro el celular. También se ven las coordenadas de x y y.
+
+<img width="726" height="432" alt="image" src="https://github.com/user-attachments/assets/5c8893f0-7c94-47da-a5aa-a368447196ab" />
 
 **4. Describe el comportamiento observado: ¿Funcionó la interacción? ¿Hubo algún retraso (latencia)?**
+
+Funcionó la interacción pero hay un retraso, al mover el dedo la bola roja se demora unos milisegundos y el movimiento no se ve suave, a pesar de eso funciona correctamente.
 
 ---
 ## Actividad 02
@@ -33,6 +38,15 @@ AAAAAAAAAAAAAAAAAAAA
 ---
 
 **4. Coloca en tu bitácora capturas de pantalla del sistema completo funcionando. Esto lo puedes hacer abriendo tanto el mobile como el desktop en tu computador y tomando una captura de pantalla de todos los involucrados (celular, computador y terminal).**
+
+<img width="1828" height="899" alt="image" src="https://github.com/user-attachments/assets/95e145ba-eda4-4eed-88c5-0c092310bafd" />
+
+<img width="1322" height="897" alt="image" src="https://github.com/user-attachments/assets/28a05c45-6d82-4057-9bfd-dd87f2113fd7" />
+
+![WhatsApp Image 2025-10-16 at 4 53 54 PM](https://github.com/user-attachments/assets/92f74189-392e-40d9-b4b4-e9ffef6c9d0d)
+
+![WhatsApp Image 2025-10-16 at 4 53 54 PM (1)](https://github.com/user-attachments/assets/c8e6b79c-1f6e-43ed-8057-21eaa9ab73ff)
+
 
 ---
 ## Actividad 03
@@ -68,6 +82,7 @@ Rúbrica
 
 ---
 ## Nota:
+
 
 
 
