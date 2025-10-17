@@ -52,7 +52,7 @@ La IP local funciona cuando ambos están conectados a la misma red, en cambio De
 
 **1. ¿Cuál es la función principal de express.static(‘public’) en este servidor? ¿Cómo se compara con el uso de app.get(‘/ruta’, …) del servidor de la Unidad 6?**
 
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+La función de express.static(‘public’) es para crear rutas automáticamente a las que se pueden acceder y en app.get había que hacerlo de forma manual y poner la ruta.
 
 **2. Explica detalladamente el flujo de un mensaje táctil: ¿Qué evento lo envía desde el móvil? ¿Qué evento lo recibe el servidor? ¿Qué hace el servidor con él? ¿Qué evento lo envía el servidor al escritorio? ¿Por qué se usa socket.broadcast.emit en lugar de io.emit o socket.emit en este caso?**
 
@@ -501,6 +501,7 @@ Rúbrica
   -Actividad 04: Completa (1.0)
   
   -Actividad 05: Completa (1.0)
+
 
 
 
