@@ -492,11 +492,16 @@ Rúbrica
 ---
 ## Nota: 5.0
 
--Actividad 01: Completa (0.5)
--Actividad 02: Completa (0.5)
--Actividad 03: Completa (1.0)
--Actividad 04: Completa (1.0)
--Actividad 05: Completa (1.0)
+  -Actividad 01: Completa (0.5)
+  
+  -Actividad 02: Completa (0.5)
+  
+  -Actividad 03: Completa (1.0)
+  
+  -Actividad 04: Completa (1.0)
+  
+  -Actividad 05: Completa (1.0)
+
 
 
 
