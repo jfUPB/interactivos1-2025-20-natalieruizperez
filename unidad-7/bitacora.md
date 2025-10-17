@@ -36,8 +36,6 @@ La función touchMoved() cada vez que uno mueve el dedo, detecta ese movimiento 
 
 La IP local funciona cuando ambos están conectados a la misma red, en cambio Dev Tunnels se usa para crear un lugar público que no depende de la red. En cuanto a desventajas la verdad ambas me parecen muy inseguras y tengo el concepto de que sería muy fácil para otras personas acceder a ellas. En ventajas está que Dev Tunnels se puede usar independientmente de la red y la de la IP local qu no se necesita internet, me hace pensar en los juegos de celular que me gustaban de pequeña que se podían jugar de forma multijugador siempre y cuando uno estuviese cerca de la otra persona y lo mejor era que se podía usar sin internet.
 
----
-
 **4. Coloca en tu bitácora capturas de pantalla del sistema completo funcionando. Esto lo puedes hacer abriendo tanto el mobile como el desktop en tu computador y tomando una captura de pantalla de todos los involucrados (celular, computador y terminal).**
 
 <img width="1828" height="899" alt="image" src="https://github.com/user-attachments/assets/95e145ba-eda4-4eed-88c5-0c092310bafd" />
@@ -82,6 +80,9 @@ Permite saber qué está sucediendo y qué líneas de código se están ejecutan
 **Diseña una aplicación interactiva que use el touch del móvil para controlar una visuales de tema musical de tu elección. Las visuales correrán en una aplicación de escritorio (desktop). Recuerda que ambas aplicaciones las construirás usando p5.js y utilizando el servidor Node.js como puente. Implementa tu diseño. Puedes usar IA generativa para ayudarte a escribir el código, pero primero debes hacer el diseño de lo que quieres.
 Incluye todos los códigos (servidor y clientes) en tu bitácora.**
 
+Escogí amsterdam de nothing but thieves que es una de mis canciones favoritas. Al pensar en una visual y teniendo en cuenta el código base que eran círculos se me ocurrío que fueran círculos de colores que crecieran cada vez que subiera el volumen de la canción. Esos círculos son de diferentes colores pero cuando se toca dos veces la pantalla con el dedo se ponen rojos y explotan. Si se lleva el dedo hacia arriba se mueven hacia esa dirección y lo mismo si se va para abajo y para un lado.
+
+
 ---
 Rúbrica
 
@@ -100,6 +101,7 @@ Rúbrica
 -Actividad 03: Completa (1.0)
 -Actividad 04: Completa (1.0)
 -Actividad 05: Completa (1.0)
+
 
 
 
