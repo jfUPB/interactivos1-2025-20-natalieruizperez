@@ -73,6 +73,7 @@ Permite saber qué está sucediendo y qué líneas de código se están ejecutan
 
 **Realiza un diagrama donde muestres el flujo completo de datos y eventos entre los tres componentes: móvil, servidor y escritorio. Puedes ilustrar con un ejemplo de coordenadas táctiles (x, y) y cómo viajan a través del sistema..**
 
+<img width="936" height="612" alt="image" src="https://github.com/user-attachments/assets/dc82ba76-98e0-4326-8a4d-211a645ad343" />
 
 
 ---
@@ -92,11 +93,14 @@ Rúbrica
 0: no realicé ninguna actividad o no realicé la autoevaluación.
 
 ---
-## Nota:
+## Nota: 5.0
 
 -Actividad 01: Completa (0.5)
 -Actividad 02: Completa (0.5)
 -Actividad 03: Completa (1.0)
+-Actividad 04: Completa (1.0)
+-Actividad 05: Completa (1.0)
+
 
 
 
