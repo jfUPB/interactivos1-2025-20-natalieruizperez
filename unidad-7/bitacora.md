@@ -54,16 +54,11 @@ La IP local funciona cuando ambos están conectados a la misma red, en cambio De
 
 **1. ¿Cuál es la función principal de express.static(‘public’) en este servidor? ¿Cómo se compara con el uso de app.get(‘/ruta’, …) del servidor de la Unidad 6?**
 
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
 **2. Explica detalladamente el flujo de un mensaje táctil: ¿Qué evento lo envía desde el móvil? ¿Qué evento lo recibe el servidor? ¿Qué hace el servidor con él? ¿Qué evento lo envía el servidor al escritorio? ¿Por qué se usa socket.broadcast.emit en lugar de io.emit o socket.emit en este caso?**
 
-El evento touchMoved() lo envía desde el celular, el evento que lo envía es el socket.broadcast.emit y lo recibe el socket.emit que se encarga de mandarlo.
-
-
-socket.emit solo le manda al cliente que lo envió (no sirve acá).
-
-io.emit le manda a todos, incluyendo al que lo mandó (no lo queremos porque el móvil ya tiene la info).
-
-socket.broadcast.emit le manda a todos menos al emisor, que es justo lo que queremos en este cas
+El evento touchMoved() detecta el movimiento del dedo en el celular, y socket.emit envia el mensaje y lo recibe el socket.on, con console.log lo muestra en gitbash y el socket.broadcast.emit hace que le llegue el mensaje a todos menos al celular que se encarga de mandar el mensaje. Se usa socket.broadcast.emit para que el celular no se envié a si mismo el mensaje.
 
 **3. Si conectaras dos computadores de escritorio y un móvil a este servidor, y movieras el dedo en el móvil, ¿Quién recibiría el mensaje retransmitido por el servidor? ¿Por qué?**
 
@@ -77,6 +72,8 @@ Permite saber qué está sucediendo y qué líneas de código se están ejecutan
 ## Actividad 04
 
 **Realiza un diagrama donde muestres el flujo completo de datos y eventos entre los tres componentes: móvil, servidor y escritorio. Puedes ilustrar con un ejemplo de coordenadas táctiles (x, y) y cómo viajan a través del sistema..**
+
+
 
 ---
 ## Actividad 05
@@ -100,6 +97,7 @@ Rúbrica
 -Actividad 01: Completa (0.5)
 -Actividad 02: Completa (0.5)
 -Actividad 03: Completa (1.0)
+
 
 
 
