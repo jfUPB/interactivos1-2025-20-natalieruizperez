@@ -3,7 +3,7 @@
 
 
 ## Actividad 01
-**Documenta los referentes visuales que te inspiren.**
+**1. Documenta los referentes visuales que te inspiren.**
 
 <img width="1080" height="1350" alt="image" src="https://github.com/user-attachments/assets/86f57bf8-485d-4eb9-85a5-2473f9f2cb3b" />
 
@@ -15,17 +15,34 @@
 
 <img width="555" height="724" alt="image" src="https://github.com/user-attachments/assets/4677649a-3783-4207-8354-d4e1f683cac2" />
 
-**Define el concepto de las visuales que quieres crear.**
+**2. Define el concepto de las visuales que quieres crear.**
 Luego de mirar varios referentes visuales, vi que los que usualmente me gustan los que estaban relacionados con líquidos derramándose o evaporándose. También hay uno que me llamó la atención en particular que me daba la sensación de esferas como contaminadas.
 
 Decidí que quería irme por las esferas ya que considero que a la hora de ejecutar el programa podré tener un resultado más similar al que tengo en mente, en cambio el de el líquido me parece más difícil de controlar y de obtener lo que me imagino. Para el programa quiero 
 
-**Explica cómo el móvil y el micro:bit controlarán las visuales.** 
-Desde el celular estaba pensando que se pueda mover 
+**3. Explica cómo el móvil y el micro:bit controlarán las visuales.** 
+Desde el celular estaba pensando que se pueda mover la pantalla, no las esferas. Es decir habrá esferas distribuidas por todas partes y en la pantalla del computador se mostrará una sola cantidad entonces desde el celular que se pueda viajar a través de la pantalla y también aumentar o disminuir el número de esferas y el tamaño. De la actividad pasada me gustó la explosión que hice entonces quiero algo similar pero en vez de explotar que palpite.
+
+
+
 
 **Haz un bocetos de todas las interfaces del sistema.**
 
+**Movil**
+-Botón para aumentar el tamaño de las esferas o disminuirlo
+
+  -Botón para aumentar la cantidad de esferas que  se muestra en la pantalla o disminuirlas
+  
+  -Botón para que palpiten
+
+Microbit:
+
+  -Que se le pueda cambiar los colores al mover el microbit en y y en x que cambie la saturacion siendo -x no saturado y +x super saturado.
+
+  -
+
 **Haz un diagrama que explique cómo se comunicarán los diferentes componentes del sistema.**
+
 
 ## Actividad 02 
 
@@ -42,5 +59,6 @@ Rúbrica
 ## Nota:
 -Activdad 01:
 -Actividad 02: 
+
 
 
