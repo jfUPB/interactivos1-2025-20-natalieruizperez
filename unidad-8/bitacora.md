@@ -28,6 +28,8 @@ Desde el celular estaba pensando que se pueda mover la pantalla, no las esferas.
 
 **Haz un bocetos de todas las interfaces del sistema.**
 
+<img width="538" height="644" alt="image" src="https://github.com/user-attachments/assets/daeeb60a-61e9-4941-9e5d-a06be598657b" />
+
 **Movil**
 -Botón para aumentar el tamaño de las esferas o disminuirlo
 
@@ -59,6 +61,7 @@ Rúbrica
 ## Nota:
 -Activdad 01:
 -Actividad 02: 
+
 
 
 
