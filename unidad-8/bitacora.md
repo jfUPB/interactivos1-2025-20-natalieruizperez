@@ -41,7 +41,7 @@ Microbit:
 
   -Que se le pueda cambiar los colores al mover el microbit en y y en x que cambie la saturacion siendo -x no saturado y +x super saturado.
 
-  -
+  -Boton A para subir el volumen y B para bajarlo.
 
 **Haz un diagrama que explique cómo se comunicarán los diferentes componentes del sistema.**
 
@@ -61,6 +61,7 @@ Rúbrica
 ## Nota:
 -Activdad 01:
 -Actividad 02: 
+
 
 
 
