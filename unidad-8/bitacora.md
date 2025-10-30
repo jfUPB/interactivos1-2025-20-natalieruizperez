@@ -45,6 +45,9 @@ Microbit:
 
 **Haz un diagrama que explique cómo se comunicarán los diferentes componentes del sistema.**
 
+<img width="874" height="709" alt="image" src="https://github.com/user-attachments/assets/47f4cabb-e40a-4023-ab7d-d75d688c4dfd" />
+
+
 
 ## Actividad 02 
 
@@ -58,9 +61,10 @@ Rúbrica
 0: no realicé ninguna actividad o no realicé la autoevaluación.
 
 ---
-## Nota:
--Activdad 01:
--Actividad 02: 
+## Nota: 3.0
+-Activdad 01: Completa (3.0)
+-Actividad 02: Incompleta (0.0)
+
 
 
 
